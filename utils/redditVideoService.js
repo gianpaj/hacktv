@@ -5,7 +5,7 @@ module.exports = function RedditVideoService() {
     if (child.data.is_video === true) {
       return true;
     }
-    //debug only - return only reddit videos
+    // debug only - return only reddit videos
     // return false;
 
     if (child.data.media != null) {
@@ -19,12 +19,12 @@ module.exports = function RedditVideoService() {
   var childObjectToDomainVideoModel = function(child) {
     var result = {};
     result.title = child.data.title;
-    result.redditLink =
-      "https://www.reddit.com/r/aww/comments/" + child.data.id;
+    result.redditLink = "https://www.reddit.com" + child.data.permalink
+
 
     if (child.data.preview && child.data.preview.images)
       result.posterSource = child.data.preview.images.thumbnail;
-
+    
     // reddit video
     if (child.data.is_video) {
       result.videoUrl = child.data.media.reddit_video.fallback_url;

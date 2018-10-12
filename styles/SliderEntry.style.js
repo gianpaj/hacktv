@@ -23,6 +23,22 @@ export const itemHeight = slideHeight + itemVerticalMargin * 2;
 const entryBorderRadius = 8;
 
 export default StyleSheet.create({
+  shareButtonContainer: {
+    width: 30,
+    height: 50,
+    paddingHorizontal: itemHorizontalMargin,
+    paddingBottom: 18 // needed for shadow
+  },
+  shareIcon: {
+    alignSelf: "flex-end",
+    top: 10,
+    position: "absolute",
+    right: 15,
+    zIndex: 10,
+    resizeMode: "contain",
+    width: 30,
+    height: 50
+  },
   slideInnerContainer: {
     width: itemWidth,
     height: viewportHeight,

@@ -65,3 +65,10 @@ export const channels = [
     // icon: require("../assets/channel_icons/011-mountains.png")
   }
 ];
+
+export const icons = {
+  share: {
+    title: "share",
+    icon: require("../assets/channel_icons/013-share.png")
+  }
+};

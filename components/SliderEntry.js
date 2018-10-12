@@ -3,7 +3,7 @@ import { AppState, View, Text, WebView, TouchableOpacity } from "react-native";
 import { Video } from "expo";
 import PropTypes from "prop-types";
 // import { ParallaxImage } from "react-native-snap-carousel";
-
+import { channels, icons } from "../static/entries";
 import styles from "../styles/SliderEntry.style";
 
 export default class SliderEntry extends PureComponent {
@@ -53,24 +53,37 @@ export default class SliderEntry extends PureComponent {
     }
 
     return (
-      <Video
-        ref={r => (this.videoRef = r)}
+        <Video
+          ref={r => (this.videoRef = r)}
         source={{ uri: item.videoUrl }}
-        rate={1.0}
-        volume={1.0}
+          rate={1.0}
+          volume={1.0}
         isMuted={false}
-        resizeMode="cover"
-        shouldPlay={true}
-        isLooping={false}
-        style={{ flex: 1 }}
+          resizeMode="cover"
+          shouldPlay={true}
+          isLooping={false}
+          style={{ flex: 1 }}
         usePoster={item.posterSource || false}
         posterSource={{ uri: item.posterSource } || null}
         onLoadStart={() => this.setState({ loading: true })}
         onLoad={() => this.setState({ loading: false })}
         onError={() => this.setState({ loading: false })}
         // useNativeControls
-      />
-    );
+        />
+      );
+  };
+
+  onShareBtnClick(videoUrl) {
+    Share.share({
+      message: '',
+      url: videoUrl,
+      title: 'Wow, did you see that?'
+    }, {
+        // Android only:
+        dialogTitle: 'Share one more amazing video',
+        // iOS only:
+        excludedActivityTypes: []
+      })
   };
 
   render() {
