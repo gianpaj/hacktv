@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text, SafeAreaView, StatusBar } from "react-native";
+import { View, Image, SafeAreaView, StatusBar } from "react-native";
 import Carousel from "react-native-snap-carousel";
 
 import {
@@ -10,23 +10,23 @@ import {
 } from "./styles/SliderEntry.style";
 import SliderEntry from "./components/SliderEntry";
 import styles, { colors } from "./styles/index.style";
-import { ENTRIES2 } from "./static/entries";
+import { channels } from "./static/entries";
 // import { scrollInterpolators, animatedStyles } from "./utils/animations";
 
 export default class example extends Component {
   renderCell = ({ item }) => <SliderEntry data={item} even={false} />;
 
-  renderChannel() {
-    const channel = "videos";
-
-    // Do not render examples on Android; because of the zIndex bug, they won't work as is
+  renderChannel = ({ item }) => {
     return (
       <View>
-        <Text style={styles.title}>{`/r/${channel} (icon)`}</Text>
+        <Image
+          source={require("./assets/ios-videocam.png")}
+          style={[styles.channelIcon, { tintColor: item.iconColor }]}
+        />
         <Carousel
           containerCustomStyle={styles.slider}
           contentContainerCustomStyle={styles.sliderContentContainer}
-          data={ENTRIES2}
+          data={channels}
           enableSnap
           itemHeight={itemHeight}
           itemWidth={itemWidth}
@@ -42,7 +42,7 @@ export default class example extends Component {
         />
       </View>
     );
-  }
+  };
 
   get gradient() {
     return (
@@ -64,11 +64,11 @@ export default class example extends Component {
           <Carousel
             containerCustomStyle={styles.slider}
             contentContainerCustomStyle={styles.sliderContentContainer}
-            data={ENTRIES2}
+            data={channels}
             enableSnap
             itemHeight={itemHeight}
             itemWidth={itemWidth}
-            renderItem={() => this.renderChannel()}
+            renderItem={this.renderChannel}
             sliderHeight={slideHeight}
             sliderWidth={sliderWidth}
             useScrollView
