@@ -1,99 +1,90 @@
-import React from "react";
+import React, { Component } from "react";
 import {
-  StyleSheet,
-  Text,
+  Platform,
   View,
-  Alert,
-  TouchableOpacity,
-  ScrollView
+  ScrollView,
+  Text,
+  StatusBar,
+  SafeAreaView
 } from "react-native";
-import CarouselPager from "react-native-carousel-pager";
+import Carousel, { Pagination } from "react-native-snap-carousel";
+import { sliderWidth, itemWidth } from "./styles/SliderEntry.style";
+import SliderEntry from "./components/SliderEntry";
+import styles, { colors } from "./styles/index.style";
+import { ENTRIES1, ENTRIES2 } from "./static/entries";
+import { scrollInterpolators, animatedStyles } from "./utils/animations";
 
-export default class App extends React.Component {
-  componentDidMount() {
-    // GET API for /videos
+const IS_ANDROID = Platform.OS === "android";
+const SLIDER_1_FIRST_ITEM = 1;
+
+export default class example extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      slider1ActiveSlide: SLIDER_1_FIRST_ITEM
+    };
   }
 
-  _renderFrame = i => {
-    return (
-      <ScrollView key={"page-" + i}>
-        <View
-          style={{
-            flex: 1,
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "center",
-            padding: 30,
-            borderRadius: 2
-          }}
-        >
-          <TouchableOpacity
-            onPress={() => this.horizontalCarousel.goToPage((i + 1) % 5)}
-          >
-            <Text style={{ color: "#666", fontSize: 60, fontWeight: "bold" }}>
-              {i + 1}
-            </Text>
-          </TouchableOpacity>
-        </View>
-      </ScrollView>
+  _renderLightItem({ item, index }) {
+    return <SliderEntry data={item} even={false} />;
+  }
+
+  customExample(refNumber, renderItemFunc) {
+    const channel = "videos";
+
+    // Do not render examples on Android; because of the zIndex bug, they won't work as is
+    return !IS_ANDROID ? (
+      <View style={[styles.exampleContainer, styles.exampleContainerDark]}>
+        <Text style={styles.title}>{`/r/${channel}`}</Text>
+        <Carousel
+          data={ENTRIES2}
+          renderItem={renderItemFunc}
+          sliderWidth={sliderWidth}
+          itemWidth={itemWidth}
+          containerCustomStyle={styles.slider}
+          contentContainerCustomStyle={styles.sliderContentContainer}
+          scrollInterpolator={
+            scrollInterpolators[`scrollInterpolator${refNumber}`]
+          }
+          slideInterpolatedStyle={animatedStyles[`animatedStyles${refNumber}`]}
+          useScrollView
+        />
+      </View>
+    ) : (
+      false
     );
-  };
+  }
+
+  get gradient() {
+    return (
+      <LinearGradient
+        colors={[colors.background1, colors.background2]}
+        startPoint={{ x: 1, y: 0 }}
+        endPoint={{ x: 0, y: 1 }}
+        style={styles.gradient}
+      />
+    );
+  }
 
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <CarouselPager
-          ref={ref => (this.carousel = ref)}
-          initialPage={2}
-          pageStyle={{ backgroundColor: "#fff" }}
-        >
-          <View key={"page0"}>
-            <Text>page0</Text>
-          </View>
-          <View key={"page1"}>
-            <Text>page1</Text>
-          </View>
-          <View key={"page2"}>
-            <Text>page2</Text>
-          </View>
-          <View key={"page3"}>
-            <Text>page3</Text>
-          </View>
-        </CarouselPager>
-        <View
-          style={{
-            flex: 1,
-            flexDirection: "row",
-            paddingLeft: 10,
-            paddingRight: 10,
-            backgroundColor: "#369"
-          }}
-        >
-          <CarouselPager
-            ref={ref => (this.verticalCarousel = ref)}
-            vertical={true}
-            deltaDelay={10}
-            pageStyle={{
-              backgroundColor: "#fff",
-              padding: 30
-            }}
+      <SafeAreaView style={styles.safeArea}>
+        <View style={styles.container}>
+          <StatusBar
+            translucent={true}
+            backgroundColor={"rgba(0, 0, 0, 0.3)"}
+            barStyle={"light-content"}
+          />
+          {/* {this.gradient} */}
+          <ScrollView
+            style={styles.scrollview}
+            scrollEventThrottle={200}
+            directionalLockEnabled
           >
-            {this._renderFrame(0)}
-          </CarouselPager>
+            {this.customExample(1, this._renderLightItem)}
+          </ScrollView>
         </View>
-      </View>
+      </SafeAreaView>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    marginTop: 25,
-    flex: 1,
-    flexDirection: "column",
-    backgroundColor: "#ccc",
-    alignItems: "center",
-    justifyContent: "center"
-  }
-});
