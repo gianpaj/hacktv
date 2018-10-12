@@ -33,8 +33,13 @@ export default class example extends Component {
           renderItem={this.renderCell}
           sliderHeight={slideHeight}
           sliderWidth={sliderWidth}
-          useScrollView
+          // useScrollView
           vertical
+          shouldOptimizeUpdates
+          removeclippedsubviews
+          removeClippedSubviews
+          initialNumToRender={1}
+          windowSize={1}
           // scrollInterpolator={
           //   scrollInterpolators[`scrollInterpolator${refNumber}`]
           // }
@@ -71,7 +76,12 @@ export default class example extends Component {
             renderItem={this.renderChannel}
             sliderHeight={slideHeight}
             sliderWidth={sliderWidth}
-            useScrollView
+            // useScrollView
+            shouldOptimizeUpdates
+            initialNumToRender={1}
+            windowSize={1}
+            removeClippedSubviews
+            removeclippedsubviews
           />
         </View>
       </SafeAreaView>
