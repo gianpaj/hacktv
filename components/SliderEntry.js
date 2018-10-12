@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
+import { Video } from "expo";
 import PropTypes from "prop-types";
 import { ParallaxImage } from "react-native-snap-carousel";
 
@@ -30,7 +31,19 @@ export default class SliderEntry extends Component {
         {...parallaxProps}
       />
     ) : (
-      <Image source={{ uri: illustration }} style={styles.image} />
+      <Video
+        source={{
+          uri: "http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4"
+        }}
+        rate={1.0}
+        volume={1.0}
+        isMuted={true}
+        resizeMode="cover"
+        shouldPlay={true}
+        isLooping
+        style={{ flex: 1 }}
+        onLoadStart={() => console.log("onLoadStart")}
+      />
     );
   }
 
@@ -48,13 +61,14 @@ export default class SliderEntry extends Component {
     );
 
     return (
-      <TouchableOpacity
+      <View style={styles.slideInnerContainer}>
+        {/* <TouchableOpacity
         activeOpacity={1}
         style={styles.slideInnerContainer}
         onPress={() => {
           alert(`You've clicked '${title}'`);
         }}
-      >
+      > */}
         <View style={styles.shadow} />
         <View style={styles.imageContainer}>
           {this.image}
@@ -66,7 +80,8 @@ export default class SliderEntry extends Component {
             {subtitle}
           </Text>
         </View>
-      </TouchableOpacity>
+        {/* </TouchableOpacity> */}
+      </View>
     );
   }
 }
