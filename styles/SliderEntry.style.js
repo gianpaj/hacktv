@@ -42,8 +42,8 @@ export default StyleSheet.create({
   slideInnerContainer: {
     width: itemWidth,
     height: viewportHeight,
-    paddingHorizontal: itemHorizontalMargin,
-    paddingBottom: 18 // needed for shadow
+    paddingHorizontal: itemHorizontalMargin
+    // paddingBottom: 18 // needed for shadow
   },
   shadow: {
     position: "absolute",

@@ -2,7 +2,7 @@ import React, { PureComponent } from "react";
 import { View, Text, Image, TouchableOpacity, TouchableHighlight } from "react-native";
 import { Video } from "expo";
 import PropTypes from "prop-types";
-import { ParallaxImage } from "react-native-snap-carousel";
+// import { ParallaxImage } from "react-native-snap-carousel";
 import { channels, icons } from "../static/entries";
 import styles from "../styles/SliderEntry.style";
 
@@ -20,29 +20,17 @@ export default class SliderEntry extends PureComponent {
 
   renderVideo = videoURL => {
     const {
-      data: { illustration },
+      // data: { illustration },
       parallax
     } = this.props;
 
-    return parallax ? (
-      <ParallaxImage
-        source={{ uri: illustration }}
-        containerStyle={[styles.imageContainer]}
-        style={styles.image}
-        parallaxFactor={0.35}
-        showSpinner={true}
-        spinnerColor="rgba(0, 0, 0, 0.25)"
-      />
-    ) : (
+    return (
         <Video
           ref={r => (this.videoRef = r)}
-          source={{
-            // uri: videoURL,
-            uri: "http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4"
-          }}
+        source={{ uri: videoURL }}
           rate={1.0}
           volume={1.0}
-          isMuted={true}
+        isMuted={false}
           resizeMode="cover"
           shouldPlay={true}
           isLooping={false}
@@ -66,9 +54,7 @@ export default class SliderEntry extends PureComponent {
   };
 
   render() {
-    const {
-      data: { title, videoURL, redditLink }
-    } = this.props;
+    const { data } = this.props;
 
     return (
       <View style={styles.slideInnerContainer}>
@@ -84,7 +70,7 @@ export default class SliderEntry extends PureComponent {
         >
           <View style={styles.shadow} />
           <View style={styles.imageContainer}>
-            {this.renderVideo(videoURL)}
+            {this.renderVideo(data.videoUrl)}
             <View style={styles.radiusMask} />
           </View>
           <View style={styles.textContainer}>
