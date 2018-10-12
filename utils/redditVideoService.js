@@ -6,7 +6,7 @@ module.exports = function RedditVideoService() {
       return true;
     }
     //debug only - return only reddit videos
-    return false;
+    // return false;
 
     if (child.data.media != null) {
       return (
@@ -21,6 +21,9 @@ module.exports = function RedditVideoService() {
     result.title = child.data.title;
     result.redditLink =
       "https://www.reddit.com/r/aww/comments/" + child.data.id;
+
+    if (child.data.preview && child.data.preview.images)
+      result.posterSource = child.data.preview.images.thumbnail;
 
     // reddit video
     if (child.data.is_video) {
