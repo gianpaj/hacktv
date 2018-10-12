@@ -7,6 +7,9 @@ import styles, { colors } from "./styles/index.style";
 import { ENTRIES2 } from "./static/entries";
 import { scrollInterpolators, animatedStyles } from "./utils/animations";
 
+var redditVideoService = require('./utils/redditVideoService.js');
+
+
 export default class example extends Component {
   _renderLightItem({ item, index }) {
     return <SliderEntry data={item} even={false} />;
@@ -48,6 +51,8 @@ export default class example extends Component {
   }
 
   render() {
+    redditVideoService.loadHot("aww");
+
     return (
       <SafeAreaView style={styles.safeArea}>
         <View style={styles.container}>
