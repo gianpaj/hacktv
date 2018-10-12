@@ -43,17 +43,6 @@ export default StyleSheet.create({
     width: itemWidth,
     height: viewportHeight,
     paddingHorizontal: itemHorizontalMargin
-    // paddingBottom: 18 // needed for shadow
-  },
-  shadow: {
-    position: "absolute",
-    top: 0,
-    left: itemHorizontalMargin,
-    right: itemHorizontalMargin,
-    bottom: 18
-    // shadowColor: colors.black,
-    // shadowOpacity: 0.25,
-    // shadowOffset: { width: 0, height: 10 },
   },
   imageContainer: {
     flex: 1,
@@ -63,25 +52,9 @@ export default StyleSheet.create({
   imageContainerEven: {
     backgroundColor: colors.black
   },
-  image: {
-    ...StyleSheet.absoluteFillObject,
-    resizeMode: "cover"
-  },
-  // image's border radius is buggy on iOS; let's hack it!
-  radiusMask: {
-    // position: "absolute",
-    // bottom: 0,
-    // left: 0,
-    // right: 0,
-    // height: entryBorderRadius,
-    // backgroundColor: "white"
-  },
-  radiusMaskEven: {
-    // backgroundColor: colors.black
-  },
   textContainer: {
     justifyContent: "center",
-    backgroundColor: "rgba(255, 255, 255, .0)"
+    backgroundColor: "rgba(0, 0, 0, .3)"
   },
   textContainerEven: {
     backgroundColor: colors.black

@@ -21,7 +21,9 @@ module.exports = function RedditVideoService() {
     result.title = child.data.title;
     result.redditLink = "https://www.reddit.com" + child.data.permalink
 
-    console.log(child);
+
+    if (child.data.preview && child.data.preview.images)
+      result.posterSource = child.data.preview.images.thumbnail;
     
     // reddit video
     if (child.data.is_video) {

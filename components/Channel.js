@@ -20,7 +20,8 @@ export default class Channel extends Component {
   };
 
   async componentDidMount() {
-    const videos = await redditVideoService().loadHot(this.props.item.title);
+    const { item } = this.props.item;
+    const videos = await redditVideoService().loadHot(item.title);
     this.setState({ videos, loading: false });
   }
 

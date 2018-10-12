@@ -20,8 +20,9 @@ export default StyleSheet.create({
     left: 10,
     zIndex: 10,
     resizeMode: "contain",
-    width: 30,
-    height: 50
+    width: 50,
+    height: 70,
+    tintColor: "white"
   },
   slider: {
     // marginTop: 15,
