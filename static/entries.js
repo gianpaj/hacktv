@@ -1,64 +1,94 @@
-export const ENTRIES1 = [
+export const ENTRIES = [
   {
     title: "Beautiful and dramatic Antelope Canyon",
     subtitle: "Lorem ipsum dolor sit amet et nuncat mergitur",
-    illustration: "https://i.imgur.com/UYiroysl.jpg"
+    videoURL: "https://v.redd.it/m8djztadpnr11/DASH_4_8_M"
   },
   {
     title: "Earlier this morning, NYC",
     subtitle: "Lorem ipsum dolor sit amet",
-    illustration: "https://i.imgur.com/UPrs1EWl.jpg"
+    videoURL: "https://v.redd.it/m8djztadpnr11/DASH_4_8_M"
   },
   {
     title: "White Pocket Sunset",
     subtitle: "Lorem ipsum dolor sit amet et nuncat ",
-    illustration: "https://i.imgur.com/MABUbpDl.jpg"
+    videoURL: "https://v.redd.it/m8djztadpnr11/DASH_4_8_M"
   },
   {
     title: "Acrocorinth, Greece",
     subtitle: "Lorem ipsum dolor sit amet et nuncat mergitur",
-    illustration: "https://i.imgur.com/KZsmUi2l.jpg"
+    videoURL: "https://v.redd.it/m8djztadpnr11/DASH_4_8_M"
   },
   {
     title: "The lone tree, majestic landscape of New Zealand",
     subtitle: "Lorem ipsum dolor sit amet",
-    illustration: "https://i.imgur.com/2nCt3Sbl.jpg"
+    videoURL: "https://v.redd.it/m8djztadpnr11/DASH_4_8_M"
   },
   {
     title: "Middle Earth, Germany",
     subtitle: "Lorem ipsum dolor sit amet",
-    illustration: "https://i.imgur.com/lceHsT6l.jpg"
+    videoURL: "https://v.redd.it/m8djztadpnr11/DASH_4_8_M"
   }
 ];
 
 export const channels = [
   {
-    title: "Favourites landscapes 1",
+    title: "videos",
     subtitle: "Lorem ipsum dolor sit amet",
     iconColor: "red"
   },
   {
-    title: "Favourites landscapes 2",
+    title: "curiousvideos", // TODO: merge with mealtimevideos
     subtitle: "Lorem ipsum dolor sit amet et nuncat mergitur",
     iconColor: "blue"
   },
   {
-    title: "Favourites landscapes 3",
+    title: "cookingvideos",
     subtitle: "Lorem ipsum dolor sit amet et nuncat",
     iconColor: "green"
   },
   {
-    title: "Favourites landscapes 4",
+    title: "educativevideos",
     subtitle: "Lorem ipsum dolor sit amet et nuncat mergitur",
     iconColor: "black"
   },
   {
-    title: "Favourites landscapes 5",
+    title: "listentothis",
     subtitle: "Lorem ipsum dolor sit amet",
     iconColor: "yellow"
   },
   {
-    title: "Favourites landscapes 6",
+    title: "contagiouslaughter",
+    subtitle: "Lorem ipsum dolor sit amet et nuncat",
+    iconColor: "orange"
+  },
+  {
+    title: "documentaries",
+    subtitle: "Lorem ipsum dolor sit amet et nuncat",
+    iconColor: "orange"
+  },
+  {
+    title: "aww",
+    subtitle: "Lorem ipsum dolor sit amet et nuncat",
+    iconColor: "orange"
+  },
+  {
+    title: "howto",
+    subtitle: "Lorem ipsum dolor sit amet et nuncat",
+    iconColor: "orange"
+  },
+  {
+    title: "lectures",
+    subtitle: "Lorem ipsum dolor sit amet et nuncat",
+    iconColor: "orange"
+  },
+  {
+    title: "youtubelounge",
+    subtitle: "Lorem ipsum dolor sit amet et nuncat",
+    iconColor: "orange"
+  },
+  {
+    title: "hiking",
     subtitle: "Lorem ipsum dolor sit amet et nuncat",
     iconColor: "orange"
   }

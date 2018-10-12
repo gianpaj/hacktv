@@ -34,7 +34,7 @@ module.exports = function RedditVideoService() {
     }
 
     // youtube video
-    if (child.data.media.type.includes("youtube.com")) {
+    if (child.data.media.type === "youtube.com") {
       var startIndex =
         child.data.media.oembed.html.indexOf("/embed/") + "/embed/".length;
       var endIndex = child.data.media.oembed.html.indexOf("?feature=oembed");
@@ -46,7 +46,7 @@ module.exports = function RedditVideoService() {
       result.type = "youtube";
     }
     // vimeo video
-    if (child.data.media.type.includes("vimeo.com")) {
+    if (child.data.media.type === "vimeo.com") {
       result.videoUrl = "vimeo.com";
       result.type = "vimeo";
     }
@@ -71,6 +71,7 @@ module.exports = function RedditVideoService() {
         console.log("DEBUG: Reddit output START!!!");
         console.log(videos);
         console.log("DEBUG: Reddit output END!!!");
+        callback(videos);
       });
     }
   };

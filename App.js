@@ -10,7 +10,7 @@ import {
 } from "./styles/SliderEntry.style";
 import SliderEntry from "./components/SliderEntry";
 import styles, { colors } from "./styles/index.style";
-import { channels } from "./static/entries";
+import { channels, ENTRIES } from "./static/entries";
 // import { scrollInterpolators, animatedStyles } from "./utils/animations";
 
 var redditVideoService = require("./utils/redditVideoService.js");
@@ -28,7 +28,7 @@ export default class example extends Component {
         <Carousel
           containerCustomStyle={styles.slider}
           contentContainerCustomStyle={styles.sliderContentContainer}
-          data={channels}
+          data={ENTRIES}
           enableSnap
           itemHeight={itemHeight}
           itemWidth={itemWidth}
@@ -63,7 +63,9 @@ export default class example extends Component {
   }
 
   render() {
-    redditVideoService().loadHot("aww");
+    redditVideoService().loadHot("aww", videos => {
+      console.warn(videos);
+    });
 
     return (
       <SafeAreaView style={styles.safeArea}>
