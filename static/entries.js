@@ -1,95 +1,54 @@
-export const ENTRIES = [
-  {
-    title: "Beautiful and dramatic Antelope Canyon",
-    subtitle: "Lorem ipsum dolor sit amet et nuncat mergitur",
-    videoURL: "https://v.redd.it/m8djztadpnr11/DASH_4_8_M"
-  },
-  {
-    title: "Earlier this morning, NYC",
-    subtitle: "Lorem ipsum dolor sit amet",
-    videoURL: "https://v.redd.it/m8djztadpnr11/DASH_4_8_M"
-  },
-  {
-    title: "White Pocket Sunset",
-    subtitle: "Lorem ipsum dolor sit amet et nuncat ",
-    videoURL: "https://v.redd.it/m8djztadpnr11/DASH_4_8_M"
-  },
-  {
-    title: "Acrocorinth, Greece",
-    subtitle: "Lorem ipsum dolor sit amet et nuncat mergitur",
-    videoURL: "https://v.redd.it/m8djztadpnr11/DASH_4_8_M"
-  },
-  {
-    title: "The lone tree, majestic landscape of New Zealand",
-    subtitle: "Lorem ipsum dolor sit amet",
-    videoURL: "https://v.redd.it/m8djztadpnr11/DASH_4_8_M"
-  },
-  {
-    title: "Middle Earth, Germany",
-    subtitle: "Lorem ipsum dolor sit amet",
-    videoURL: "https://v.redd.it/m8djztadpnr11/DASH_4_8_M"
-  }
-];
-
 export const channels = [
   {
     title: "videos",
-    subtitle: "Lorem ipsum dolor sit amet",
-    iconColor: "red"
+    icon: require("../assets/channel_icons/007-popcorn.png")
   },
   {
     title: "curiousvideos", // TODO: merge with mealtimevideos
-    subtitle: "Lorem ipsum dolor sit amet et nuncat mergitur",
-    iconColor: "blue"
+    icon: require("../assets/channel_icons/002-curious.png")
+  },
+  {
+    title: "mealtimevideos", // TODO: merge with mealtimevideos
+    icon: require("../assets/channel_icons/002-curious.png")
   },
   {
     title: "cookingvideos",
-    subtitle: "Lorem ipsum dolor sit amet et nuncat",
-    iconColor: "green"
+    icon: require("../assets/channel_icons/003-apple.png")
   },
   {
     title: "educativevideos",
-    subtitle: "Lorem ipsum dolor sit amet et nuncat mergitur",
-    iconColor: "black"
+    icon: require("../assets/channel_icons/009-eyeglasses.png")
   },
   {
-    title: "listentothis",
-    subtitle: "Lorem ipsum dolor sit amet",
-    iconColor: "yellow"
+    title: "music", // not listentothis?
+    icon: require("../assets/channel_icons/005-compact-disc.png")
   },
   {
-    title: "contagiouslaughter",
-    subtitle: "Lorem ipsum dolor sit amet et nuncat",
-    iconColor: "orange"
+    title: "funny", // not contagiouslaughter?
+    icon: require("../assets/channel_icons/006-laughing.png")
   },
   {
     title: "documentaries",
-    subtitle: "Lorem ipsum dolor sit amet et nuncat",
-    iconColor: "orange"
+    icon: require("../assets/channel_icons/001-internet.png")
   },
   {
     title: "aww",
-    subtitle: "Lorem ipsum dolor sit amet et nuncat",
-    iconColor: "orange"
+    icon: require("../assets/channel_icons/008-pawprint.png")
   },
   {
     title: "howto",
-    subtitle: "Lorem ipsum dolor sit amet et nuncat",
-    iconColor: "orange"
+    icon: require("../assets/channel_icons/004-creative.png")
   },
   {
     title: "lectures",
-    subtitle: "Lorem ipsum dolor sit amet et nuncat",
-    iconColor: "orange"
+    icon: require("../assets/channel_icons/012-open-magazine.png")
   },
   {
-    title: "youtubelounge",
-    subtitle: "Lorem ipsum dolor sit amet et nuncat",
-    iconColor: "orange"
+    title: "games", // not youtubelounge?
+    icon: require("../assets/channel_icons/010-console.png")
   },
   {
-    title: "hiking",
-    subtitle: "Lorem ipsum dolor sit amet et nuncat",
-    iconColor: "orange"
+    title: "nature", // not hiking?
+    icon: require("../assets/channel_icons/011-mountains.png")
   }
 ];

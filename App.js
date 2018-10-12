@@ -10,7 +10,7 @@ import {
 } from "./styles/SliderEntry.style";
 import SliderEntry from "./components/SliderEntry";
 import styles, { colors } from "./styles/index.style";
-import { channels, ENTRIES } from "./static/entries";
+import { channels } from "./static/entries";
 // import { scrollInterpolators, animatedStyles } from "./utils/animations";
 
 var redditVideoService = require("./utils/redditVideoService.js");
@@ -21,14 +21,11 @@ export default class example extends Component {
   renderChannel = ({ item }) => {
     return (
       <View>
-        <Image
-          source={require("./assets/ios-videocam.png")}
-          style={[styles.channelIcon, { tintColor: item.iconColor }]}
-        />
+        <Image source={item.icon} style={styles.channelIcon} />
         <Carousel
           containerCustomStyle={styles.slider}
           contentContainerCustomStyle={styles.sliderContentContainer}
-          data={ENTRIES}
+          data={[{}]}
           enableSnap
           itemHeight={itemHeight}
           itemWidth={itemWidth}
