@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { ActivityIndicator, View, Image } from "react-native";
+import { ActivityIndicator, View, Text, Image } from "react-native";
 import Carousel from "react-native-snap-carousel";
 
 import SliderEntry from "./SliderEntry";
@@ -43,7 +43,8 @@ export default class Channel extends Component {
 
     return (
       <View>
-        <Image source={item.icon} style={styles.channelIcon} />
+        {/* <Image source={item.icon} style={styles.channelIcon} /> */}
+        <Text style={styles.channelText}>{item.index + 1}</Text>
         <Carousel
           containerCustomStyle={styles.slider}
           contentContainerCustomStyle={styles.sliderContentContainer}

@@ -65,8 +65,9 @@ export default class SliderEntry extends PureComponent {
         style={{ flex: 1 }}
         usePoster={item.posterSource || false}
         posterSource={{ uri: item.posterSource } || null}
-        // onLoadStart={() => console.warn("onLoadStart")}
-        onError={() => console.warn("onError")}
+        onLoadStart={() => this.setState({ loading: true })}
+        onLoad={() => this.setState({ loading: false })}
+        onError={() => this.setState({ loading: false })}
         // useNativeControls
       />
     );
@@ -81,6 +82,7 @@ export default class SliderEntry extends PureComponent {
           activeOpacity={1}
           style={styles.slideInnerContainer}
           onPress={async () => {
+            if (!this.videoRef) return;
             const status = await this.videoRef.getStatusAsync();
             if (status.isPlaying) this.videoRef.pauseAsync();
             else this.videoRef.playAsync();

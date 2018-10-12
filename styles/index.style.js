@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 
 export const colors = {
   black: "#1a1917",
-  gray: "#888888"
+  gray: "#777"
 };
 
 export default StyleSheet.create({
@@ -15,14 +15,25 @@ export default StyleSheet.create({
   },
   channelIcon: {
     alignSelf: "flex-start",
-    top: 10,
+    top: 30,
     position: "absolute",
     left: 10,
     zIndex: 10,
     resizeMode: "contain",
-    width: 50,
-    height: 70,
+    width: 30,
+    height: 40,
     tintColor: "white"
+  },
+  channelText: {
+    alignSelf: "flex-start",
+    bottom: 20,
+    position: "absolute",
+    right: 2,
+    paddingTop: 5,
+    fontSize: 24,
+    zIndex: 10,
+    width: 30,
+    color: "white"
   },
   slider: {
     // marginTop: 15,

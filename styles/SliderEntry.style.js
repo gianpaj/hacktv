@@ -37,6 +37,11 @@ export default StyleSheet.create({
     backgroundColor: colors.black
   },
   textContainer: {
+    bottom: 10,
+    paddingBottom: 20,
+    position: "absolute",
+    zIndex: 10,
+    width: "100%",
     justifyContent: "center",
     backgroundColor: "rgba(0, 0, 0, .3)"
   },
@@ -47,6 +52,7 @@ export default StyleSheet.create({
     color: colors.gray,
     fontSize: 13,
     fontWeight: "bold",
+    // fontFamily: "OpenSans",
     letterSpacing: 0.5
   },
   titleEven: {
