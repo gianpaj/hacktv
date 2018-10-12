@@ -1,11 +1,14 @@
 {
   "expo": {
-    "name": "hacktv",
-    "description": "This project is really great.",
-    "slug": "hacktv",
+    "name": "ucutv",
+    "description": "This project is really great. Цей проект дійсно чудовий.",
+    "slug": "ucutv",
     "privacy": "public",
     "sdkVersion": "30.0.0",
-    "platforms": ["ios", "android"],
+    "platforms": [
+      "ios",
+      "android"
+    ],
     "version": "1.0.0",
     "orientation": "landscape",
     "icon": "./assets/icon.png",
@@ -17,9 +20,12 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
-    }
+    },
+    "githubUrl": "https://github.com/gianpaj/hacktv"
   }
 }
