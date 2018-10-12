@@ -10,8 +10,8 @@ module.exports = function RedditVideoService() {
     if (child.data.is_video === true) {
       return true;
     }
-    //debug only - return only reddit videos
-    return false;
+    // debug only - return only reddit videos
+    // return false;
 
     if (child.data.media != null) {
       return (
@@ -24,8 +24,10 @@ module.exports = function RedditVideoService() {
   var childObjectToDomainVideoModel = function(child) {
     var result = {};
     result.title = child.data.title;
-    result.redditLink = "https://www.reddit.com/r/aww/comments/" + child.data.id
+    result.redditLink = "https://www.reddit.com" + child.data.permalink
 
+    console.log(child);
+    
     // reddit video
     if (child.data.is_video) {
       result.videoUrl = child.data.media.reddit_video.fallback_url;

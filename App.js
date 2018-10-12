@@ -10,8 +10,9 @@ import {
 } from "./styles/SliderEntry.style";
 import SliderEntry from "./components/SliderEntry";
 import styles, { colors } from "./styles/index.style";
-import { channels } from "./static/entries";
+import { channels, icons } from "./static/entries";
 // import { scrollInterpolators, animatedStyles } from "./utils/animations";
+import { Share } from 'react-native';
 
 var redditVideoService = require("./utils/redditVideoService.js");
 
@@ -39,10 +40,10 @@ export default class example extends Component {
           removeClippedSubviews
           initialNumToRender={1}
           windowSize={1}
-          // scrollInterpolator={
-          //   scrollInterpolators[`scrollInterpolator${refNumber}`]
-          // }
-          // slideInterpolatedStyle={animatedStyles[`animatedStyles${refNumber}`]}
+        // scrollInterpolator={
+        //   scrollInterpolators[`scrollInterpolator${refNumber}`]
+        // }
+        // slideInterpolatedStyle={animatedStyles[`animatedStyles${refNumber}`]}
         />
       </View>
     );

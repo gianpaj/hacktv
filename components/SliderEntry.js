@@ -1,9 +1,9 @@
 import React, { PureComponent } from "react";
-import { View, Text, Image, TouchableOpacity } from "react-native";
+import { View, Text, Image, TouchableOpacity, TouchableHighlight } from "react-native";
 import { Video } from "expo";
 import PropTypes from "prop-types";
 import { ParallaxImage } from "react-native-snap-carousel";
-
+import { channels, icons } from "../static/entries";
 import styles from "../styles/SliderEntry.style";
 
 export default class SliderEntry extends PureComponent {
@@ -34,27 +34,40 @@ export default class SliderEntry extends PureComponent {
         spinnerColor="rgba(0, 0, 0, 0.25)"
       />
     ) : (
-      <Video
-        ref={r => (this.videoRef = r)}
-        source={{
-          // uri: videoURL,
-          uri: "http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4"
-        }}
-        rate={1.0}
-        volume={1.0}
-        isMuted={true}
-        resizeMode="cover"
-        shouldPlay={true}
-        isLooping={false}
-        style={{ flex: 1 }}
+        <Video
+          ref={r => (this.videoRef = r)}
+          source={{
+            // uri: videoURL,
+            uri: "http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4"
+          }}
+          rate={1.0}
+          volume={1.0}
+          isMuted={true}
+          resizeMode="cover"
+          shouldPlay={true}
+          isLooping={false}
+          style={{ flex: 1 }}
         // onLoadStart={() => console.warn("onLoadStart")}
-      />
-    );
+        />
+      );
+  };
+
+  onShareBtnClick(videoUrl) {
+    Share.share({
+      message: '',
+      url: videoUrl,
+      title: 'Wow, did you see that?'
+    }, {
+        // Android only:
+        dialogTitle: 'Share one more amazing video',
+        // iOS only:
+        excludedActivityTypes: []
+      })
   };
 
   render() {
     const {
-      data: { title, videoURL }
+      data: { title, videoURL, redditLink }
     } = this.props;
 
     return (
