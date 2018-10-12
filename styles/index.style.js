@@ -13,15 +13,15 @@ export default StyleSheet.create({
   container: {
     flex: 1
   },
-  title: {
-    paddingHorizontal: 30,
-    color: "rgba(255, 255, 255, 0.9)",
-    fontSize: 20,
-    fontWeight: "bold",
-    textAlign: "center"
-  },
-  titleDark: {
-    color: colors.black
+  channelIcon: {
+    alignSelf: "flex-start",
+    top: 10,
+    position: "absolute",
+    left: 10,
+    zIndex: 10,
+    resizeMode: "contain",
+    width: 30,
+    height: 50
   },
   slider: {
     // marginTop: 15,

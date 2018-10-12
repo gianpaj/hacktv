@@ -11,19 +11,21 @@ function wp(percentage) {
   return Math.round(value);
 }
 
-const slideHeight = viewportHeight;
-const slideWidth = wp(100);
+export const slideHeight = viewportHeight;
+export const slideWidth = wp(100);
 const itemHorizontalMargin = wp(0);
+const itemVerticalMargin = wp(0);
 
 export const sliderWidth = viewportWidth;
 export const itemWidth = slideWidth + itemHorizontalMargin * 2;
+export const itemHeight = slideHeight + itemVerticalMargin * 2;
 
 const entryBorderRadius = 8;
 
 export default StyleSheet.create({
   slideInnerContainer: {
     width: itemWidth,
-    height: slideHeight,
+    height: viewportHeight,
     paddingHorizontal: itemHorizontalMargin,
     paddingBottom: 18 // needed for shadow
   },
@@ -63,9 +65,6 @@ export default StyleSheet.create({
   },
   textContainer: {
     justifyContent: "center",
-    paddingTop: 20 - entryBorderRadius,
-    paddingBottom: 20,
-    paddingHorizontal: 16,
     backgroundColor: "rgba(255, 255, 255, .0)"
   },
   textContainerEven: {
