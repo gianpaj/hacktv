@@ -15,7 +15,7 @@ export default class SliderEntry extends PureComponent {
   };
 
   componentWillUnmount() {
-    this.videoRef.stopAsync();
+    this.videoRef.pauseAsync();
   }
 
   renderVideo = videoURL => {

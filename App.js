@@ -13,8 +13,7 @@ import styles, { colors } from "./styles/index.style";
 import { channels } from "./static/entries";
 // import { scrollInterpolators, animatedStyles } from "./utils/animations";
 
-var redditVideoService = require('./utils/redditVideoService.js');
-
+var redditVideoService = require("./utils/redditVideoService.js");
 
 export default class example extends Component {
   renderCell = ({ item }) => <SliderEntry data={item} even={false} />;
@@ -64,7 +63,7 @@ export default class example extends Component {
   }
 
   render() {
-    redditVideoService.loadHot("aww");
+    redditVideoService().loadHot("aww");
 
     return (
       <SafeAreaView style={styles.safeArea}>
