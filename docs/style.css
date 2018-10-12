@@ -1,46 +1,56 @@
 .card {
-	border: 0;
-	padding-top: 0;
-	text-align: center;
+  border: 0;
+  padding-top: 0;
+  text-align: center;
 }
 
 .btn-apple {
-	width: 200px;
-	height: 60px;
-	background: url('icons/apple_button.png');
-	background-size: cover;
-	margin: 20px;
-	border: none;
+  width: 200px;
+  height: 60px;
+  background: url("icons/apple_button.png");
+  background-size: cover;
+  margin: 20px;
+  border: none;
+}
+
+.c014 {
+  width: 200px;
+  padding: 10px;
 }
 
 .btn-android {
-	width: 200px;
-	height: 60px;
-	background: url('icons/android_button.png');
-	background-size: cover;
-	margin: 20px;
-	border: none;
+  width: 200px;
+  height: 60px;
+  background: url("icons/android_button.png");
+  background-size: cover;
+  margin: 20px;
+  border: none;
 }
 
 .btn-group {
-	padding-top: 20px;
+  padding-top: 40px;
 }
 
 .card-img-top {
-	width: 30% !important;
-	margin: 0 auto;
+  width: 30%;
+  margin: 0 auto;
+}
+@media (max-width: 576px) {
+  .card-img-top {
+    width: 200px;
+  }
 }
 
 .card-title {
-	text-align: center;
-	font-size: 2em;
-	font-family: 'Open Sans', sans-serif;
+  text-align: center;
+  font-size: 2em;
+  font-family: "Open Sans", sans-serif;
 }
 
 .card-body {
-	margin: auto;
+  margin: auto;
 }
 
 .android {
-	color: red;
+  color: red;
 }
