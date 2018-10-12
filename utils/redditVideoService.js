@@ -1,11 +1,6 @@
 require("reddit.js");
 
 module.exports = function RedditVideoService() {
-  //private region
-
-  var currentChannel = "aww";
-  var currentPage = 0;
-
   var isVideoObject = function(child) {
     if (child.data.is_video === true) {
       return true;
@@ -24,7 +19,8 @@ module.exports = function RedditVideoService() {
   var childObjectToDomainVideoModel = function(child) {
     var result = {};
     result.title = child.data.title;
-    result.redditLink = "https://www.reddit.com/r/aww/comments/" + child.data.id
+    result.redditLink =
+      "https://www.reddit.com/r/aww/comments/" + child.data.id;
 
     // reddit video
     if (child.data.is_video) {
@@ -54,28 +50,27 @@ module.exports = function RedditVideoService() {
       result.videoUrl = "vimeo.com";
       result.type = "vimeo";
     }
+
     return result;
   };
 
   // public interface
   return {
-    loadHot: function(channel, callback) {
-      this.loadHotStartFrom(channel, null, callback);
-    },
-    loadHotStartFrom: function(channel, after, callback) {
-      var query = reddit.hot(channel).limit(100);
-      if (after != null) {
-        query = query.after(after);
-      }
-      query.fetch(function(res) {
-        var videos = res.data.children
-          .filter(x => isVideoObject(x))
-          .map(x => childObjectToDomainVideoModel(x));
+    // loadHot: function(channel) {
+    //   return this.loadHotStartFrom(channel, null);
+    // },
+    loadHot: function(channel, after) {
+      return new Promise((result, reject) => {
+        let query = reddit.hot(channel).limit(100);
+        if (after !== null) query = query.after(after);
 
-        console.log("DEBUG: Reddit output START!!!");
-        console.log(videos);
-        console.log("DEBUG: Reddit output END!!!");
-        callback(videos);
+        query.fetch(res => {
+          var videos = res.data.children
+            .filter(x => isVideoObject(x))
+            .map(x => childObjectToDomainVideoModel(x));
+
+          result(videos);
+        });
       });
     }
   };
