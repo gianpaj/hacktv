@@ -1,37 +1,44 @@
 import React, { Component } from "react";
-import { View, ScrollView, Text, SafeAreaView } from "react-native";
+import { View, Text, SafeAreaView, StatusBar } from "react-native";
 import Carousel from "react-native-snap-carousel";
 
-import { sliderWidth, itemWidth } from "./styles/SliderEntry.style";
+import {
+  sliderWidth,
+  slideHeight,
+  itemWidth,
+  itemHeight
+} from "./styles/SliderEntry.style";
 import SliderEntry from "./components/SliderEntry";
 import styles, { colors } from "./styles/index.style";
 import { ENTRIES2 } from "./static/entries";
-import { scrollInterpolators, animatedStyles } from "./utils/animations";
+// import { scrollInterpolators, animatedStyles } from "./utils/animations";
 
 export default class example extends Component {
-  renderCell({ item }) {
-    return <SliderEntry data={item} even={false} />;
-  }
+  renderCell = ({ item }) => <SliderEntry data={item} even={false} />;
 
-  renderGrid(refNumber) {
+  renderChannel() {
     const channel = "videos";
 
     // Do not render examples on Android; because of the zIndex bug, they won't work as is
     return (
-      <View style={[styles.exampleContainer, styles.exampleContainerDark]}>
-        <Text style={styles.title}>{`/r/${channel}`}</Text>
+      <View>
+        <Text style={styles.title}>{`/r/${channel} (icon)`}</Text>
         <Carousel
-          data={ENTRIES2}
-          renderItem={this.renderCell}
-          sliderWidth={sliderWidth}
-          itemWidth={itemWidth}
           containerCustomStyle={styles.slider}
           contentContainerCustomStyle={styles.sliderContentContainer}
-          scrollInterpolator={
-            scrollInterpolators[`scrollInterpolator${refNumber}`]
-          }
-          slideInterpolatedStyle={animatedStyles[`animatedStyles${refNumber}`]}
+          data={ENTRIES2}
+          enableSnap
+          itemHeight={itemHeight}
+          itemWidth={itemWidth}
+          renderItem={this.renderCell}
+          sliderHeight={slideHeight}
+          sliderWidth={sliderWidth}
           useScrollView
+          vertical
+          // scrollInterpolator={
+          //   scrollInterpolators[`scrollInterpolator${refNumber}`]
+          // }
+          // slideInterpolatedStyle={animatedStyles[`animatedStyles${refNumber}`]}
         />
       </View>
     );
@@ -52,15 +59,20 @@ export default class example extends Component {
     return (
       <SafeAreaView style={styles.safeArea}>
         <View style={styles.container}>
-          {/* <StatusBar hidden /> */}
+          <StatusBar hidden />
           {/* {this.gradient} */}
-          <ScrollView
-            style={styles.scrollview}
-            scrollEventThrottle={200}
-            directionalLockEnabled
-          >
-            {this.renderGrid(1)}
-          </ScrollView>
+          <Carousel
+            containerCustomStyle={styles.slider}
+            contentContainerCustomStyle={styles.sliderContentContainer}
+            data={ENTRIES2}
+            enableSnap
+            itemHeight={itemHeight}
+            itemWidth={itemWidth}
+            renderItem={() => this.renderChannel()}
+            sliderHeight={slideHeight}
+            sliderWidth={sliderWidth}
+            useScrollView
+          />
         </View>
       </SafeAreaView>
     );

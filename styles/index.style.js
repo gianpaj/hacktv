@@ -14,11 +14,9 @@ export default StyleSheet.create({
     flex: 1
   },
   title: {
-    paddingHorizontal: 30,
-    color: "rgba(255, 255, 255, 0.9)",
-    fontSize: 20,
-    fontWeight: "bold",
-    textAlign: "center"
+    alignSelf: "flex-start",
+    top: 10,
+    zIndex: 10
   },
   titleDark: {
     color: colors.black
