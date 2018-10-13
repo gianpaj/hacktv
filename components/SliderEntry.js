@@ -158,6 +158,7 @@ export default class SliderEntry extends PureComponent {
           activeOpacity={1}
           style={styles.slideInnerContainer}
           onPress={async () => {
+            if (!this.videoRef) return;
             const status = await this.videoRef.getStatusAsync();
 
             if (status.isPlaying) {

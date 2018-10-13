@@ -1,7 +1,7 @@
-import { StyleSheet, Dimensions, Platform } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
 import { colors } from "../styles/index.style";
 
-const IS_IOS = Platform.OS === "ios";
+// const IS_IOS = Platform.OS === "ios";
 const { width: viewportWidth, height: viewportHeight } = Dimensions.get(
   "window"
 );
@@ -40,6 +40,7 @@ export default StyleSheet.create({
     height: 50
   },
   slideInnerContainer: {
+    backgroundColor: colors.black,
     width: itemWidth,
     height: viewportHeight,
     paddingHorizontal: itemHorizontalMargin

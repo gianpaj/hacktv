@@ -19,12 +19,13 @@ module.exports = function RedditVideoService() {
   var childObjectToDomainVideoModel = function(child) {
     var result = {};
     result.title = child.data.title;
-    result.redditLink = "https://www.reddit.com" + child.data.permalink
+    result.redditLink = "https://www.reddit.com" + child.data.permalink;
 
+    if (child.data.preview && child.data.preview.images) {
+      const images = child.data.preview.images[0].resolutions;
+      result.posterSource = images[images.length - 1].url;
+    }
 
-    if (child.data.preview && child.data.preview.images)
-      result.posterSource = child.data.preview.images.thumbnail;
-    
     // reddit video
     if (child.data.is_video) {
       result.videoUrl = child.data.media.reddit_video.fallback_url;
