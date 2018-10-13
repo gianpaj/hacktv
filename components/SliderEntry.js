@@ -101,9 +101,10 @@ export default class SliderEntry extends PureComponent {
         shouldPlay={true}
         isLooping={false}
         style={{ flex: 1 }}
-        usePoster={item.posterSource || false}
-        posterSource={{ uri: item.posterSource } || null}
+        // usePoster={item.posterSource ? true : false}
+        // posterSource={{ uri: item.posterSource } || null}
         onLoadStart={() => this.setState({ loading: true })}
+        onLoad={() => this.setState({ loading: false })}
         onPlaybackStatusUpdate={playbackStatus => {
           if (playbackStatus.isPlaying && this.state.loading) {
             this.setState({ loading: false }, () => {
@@ -114,6 +115,7 @@ export default class SliderEntry extends PureComponent {
 
           if (playbackStatus.isBuffering) {
             // Update your UI for the buffering state
+            // console.warn(playbackStatus);
           }
 
           // The player has just finished playing and will stop. Maybe you want to play something else?

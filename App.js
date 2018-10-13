@@ -12,7 +12,7 @@ import Channel from "./components/Channel";
 import styles, { colors } from "./styles/index.style";
 import { channels, icons } from "./static/entries";
 // import { scrollInterpolators, animatedStyles } from "./utils/animations";
-import { Share } from 'react-native';
+// import { Share } from 'react-native';
 
 export default class example extends Component {
   get gradient() {

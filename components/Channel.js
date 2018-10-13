@@ -14,6 +14,7 @@ import styles, { colors } from "../styles/index.style";
 const redditVideoService = require("../utils/redditVideoService.js");
 
 export default class Channel extends Component {
+  child;
   state = {
     loading: true,
     fadeAnim: new Animated.Value(1), // Initial value for opacity: 1
@@ -28,12 +29,16 @@ export default class Channel extends Component {
 
   renderCell = ({ item }) => (
     <SliderEntry
+      ref={instance => (this.child = instance)}
       onPause={this.onPause}
       onPlay={this.onPlay}
       data={item}
     />
   );
 
+  onVideoOnScreen = () => {
+    this.child && this.child.onPlay();
+  };
 
   onPlay = () => {
     this.setState({ fadeAnim: new Animated.Value(1) }, () =>
@@ -86,6 +91,7 @@ export default class Channel extends Component {
           sliderHeight={slideHeight}
           sliderWidth={sliderWidth}
           // useScrollView
+          onSnapToItem={this.onVideoOnScreen}
           vertical
           shouldOptimizeUpdates
           removeclippedsubviews
