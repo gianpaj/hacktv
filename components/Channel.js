@@ -25,8 +25,7 @@ export default class Channel extends Component {
     const { item } = this.props.item;
     const videos = await redditVideoService().loadHot(item.subreddit);
 
-    if (__DEV__)
-      console.log({ channelName: item.subreddit, videos: videos });
+    if (__DEV__) console.log({ channelName: item.subreddit, videos: videos });
 
     this.setState({ videos, loading: false });
   }
@@ -102,10 +101,10 @@ export default class Channel extends Component {
           removeClippedSubviews
           initialNumToRender={2}
           windowSize={2}
-        // scrollInterpolator={
-        //   scrollInterpolators[`scrollInterpolator${refNumber}`]
-        // }
-        // slideInterpolatedStyle={animatedStyles[`animatedStyles${refNumber}`]}
+          // scrollInterpolator={
+          //   scrollInterpolators[`scrollInterpolator${refNumber}`]
+          // }
+          // slideInterpolatedStyle={animatedStyles[`animatedStyles${refNumber}`]}
         />
       </View>
     );
