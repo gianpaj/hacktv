@@ -149,8 +149,39 @@ export default class SliderEntry extends PureComponent {
     );
   }
 
+  renderDescription() {
+    const { data } = this.props;
+    return (
+      <Animated.View
+        style={[
+          styles.textContainer,
+          { opacity: this.state.fadeAnim },
+          data.subtitle ? { paddingBottom: 20 } : { paddingBottom: 10 }
+        ]}
+      >
+        <Text style={styles.title} numberOfLines={2}>
+          {data.title}
+        </Text>
+        {data.subtitle && (
+          <Text style={styles.subtitle} numberOfLines={2}>
+            {data.subtitle}
+          </Text>
+        )}
+      </Animated.View>
+    );
+  }
+
   render() {
     const { data } = this.props;
+
+    if (data.type == "youtube") {
+      return (
+        <View style={styles.slideInnerContainer}>
+          <View style={styles.videoContainer}>{this.renderVideo(data)}</View>
+          {this.renderDescription()}
+        </View>
+      );
+    }
 
     return (
       <View style={styles.slideInnerContainer}>
@@ -168,22 +199,7 @@ export default class SliderEntry extends PureComponent {
           }}
         >
           <View style={styles.videoContainer}>{this.renderVideo(data)}</View>
-          <Animated.View
-            style={[
-              styles.textContainer,
-              { opacity: this.state.fadeAnim },
-              data.subtitle ? { paddingBottom: 20 } : { paddingBottom: 10 }
-            ]}
-          >
-            <Text style={styles.title} numberOfLines={2}>
-              {data.title}
-            </Text>
-            {data.subtitle && (
-              <Text style={styles.subtitle} numberOfLines={2}>
-                {data.subtitle}
-              </Text>
-            )}
-          </Animated.View>
+          {this.renderDescription()}
         </TouchableOpacity>
       </View>
     );
