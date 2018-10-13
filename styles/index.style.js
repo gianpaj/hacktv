@@ -14,7 +14,6 @@ export default StyleSheet.create({
     flex: 1
   },
   channelIcon: {
-    alignSelf: "flex-start",
     top: 30,
     position: "absolute",
     left: 10,
@@ -25,14 +24,12 @@ export default StyleSheet.create({
     tintColor: "white"
   },
   channelText: {
-    alignSelf: "flex-start",
-    bottom: 20,
+    top: 10,
     position: "absolute",
-    right: 2,
+    left: 10,
     paddingTop: 5,
-    fontSize: 24,
+    fontSize: 18,
     zIndex: 10,
-    width: 30,
     color: "white"
   },
   slider: {

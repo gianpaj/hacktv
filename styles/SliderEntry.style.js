@@ -44,32 +44,29 @@ export default StyleSheet.create({
     height: viewportHeight,
     paddingHorizontal: itemHorizontalMargin
   },
-  imageContainer: {
+  videoContainer: {
     flex: 1,
-    marginBottom: IS_IOS ? 0 : -1, // Prevent a random Android rendering issue
+    // marginBottom: IS_IOS ? 0 : -1, // Prevent a random Android rendering issue
     backgroundColor: "white"
   },
-  imageContainerEven: {
-    backgroundColor: colors.black
-  },
   textContainer: {
-    bottom: 10,
-    paddingBottom: 20,
+    bottom: 0,
     position: "absolute",
     zIndex: 10,
     width: "100%",
     justifyContent: "center",
-    backgroundColor: "rgba(0, 0, 0, .3)"
+    backgroundColor: "rgba(0, 0, 0, .3)",
+    flex: 1
   },
   textContainerEven: {
     backgroundColor: colors.black
   },
   title: {
-    color: colors.gray,
+    color: "rgba(255, 255, 255, .9)",
     fontSize: 13,
     fontWeight: "bold",
     // fontFamily: "OpenSans",
-    letterSpacing: 0.5
+    padding: 10
   },
   titleEven: {
     color: "white"

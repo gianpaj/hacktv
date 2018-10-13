@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { ActivityIndicator, View, Text, Image } from "react-native";
+import { ActivityIndicator, Animated, View, Text } from "react-native";
 import Carousel from "react-native-snap-carousel";
 
 import SliderEntry from "./SliderEntry";
@@ -16,23 +16,48 @@ const redditVideoService = require("../utils/redditVideoService.js");
 export default class Channel extends Component {
   state = {
     loading: true,
+    fadeAnim: new Animated.Value(1), // Initial value for opacity: 1
     videos: []
   };
 
   async componentDidMount() {
     const { item } = this.props.item;
-    const videos = await redditVideoService().loadHot(item.title);
+    const videos = await redditVideoService().loadHot(item.subreddit);
     this.setState({ videos, loading: false });
   }
 
-  renderCell = ({ item }) => <SliderEntry data={item} even={false} />;
+  renderCell = ({ item }) => (
+    <SliderEntry
+      onPause={this.onPause}
+      onPlay={this.onPlay}
+      data={item}
+    />
+  );
+
+
+  onPlay = () => {
+    this.setState({ fadeAnim: new Animated.Value(1) }, () =>
+      Animated.timing(this.state.fadeAnim, {
+        toValue: 0,
+        duration: 2000
+      }).start()
+    );
+  };
+
+  onPause = () => {
+    this.setState({ fadeAnim: new Animated.Value(0) }, () =>
+      Animated.timing(this.state.fadeAnim, {
+        toValue: 1,
+        duration: 2000
+      }).start()
+    );
+  };
 
   render() {
     const { item } = this.props.item;
     const { videos, loading } = this.state;
 
-    if (!videos.length) return null;
-    else if (loading)
+    if (loading)
       return (
         <ActivityIndicator
           size="large"
@@ -44,7 +69,12 @@ export default class Channel extends Component {
     return (
       <View>
         {/* <Image source={item.icon} style={styles.channelIcon} /> */}
-        <Text style={styles.channelText}>{item.index + 1}</Text>
+        {/* <Text style={styles.channelText}>{item.title}</Text> */}
+        <Animated.Text
+          style={[styles.channelText, { opacity: this.state.fadeAnim }]}
+        >
+          {item.title}
+        </Animated.Text>
         <Carousel
           containerCustomStyle={styles.slider}
           contentContainerCustomStyle={styles.sliderContentContainer}
