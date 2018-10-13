@@ -18,6 +18,7 @@ export default class SliderEntry extends PureComponent {
 
   state = {
     appState: AppState.currentState,
+    finished: false,
     fadeAnim: new Animated.Value(1), // Initial value for opacity: 1
     loading: true
   };
@@ -47,6 +48,9 @@ export default class SliderEntry extends PureComponent {
         }).start()
       );
       this.props.onPlay();
+    }
+    if (this.state.finished) {
+      this.videoRef.playFromPositionAsync(0);
     }
   };
 
@@ -115,6 +119,7 @@ export default class SliderEntry extends PureComponent {
           // The player has just finished playing and will stop. Maybe you want to play something else?
           if (playbackStatus.didJustFinish && !playbackStatus.isLooping) {
             console.warn("didJustFinish");
+            this.setState({ finished: true });
           }
         }}
         onError={() => {
