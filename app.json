@@ -14,9 +14,6 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "updates": {
-      "fallbackToCacheTimeout": 0
-    },
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
@@ -24,6 +21,11 @@
     "android": {
       "package": "com.walnut.tv"
     },
-    "githubUrl": "https://github.com/gianpaj/hacktv"
+    "githubUrl": "https://github.com/gianpaj/hacktv",
+    "updates": {
+      "enabled": true,
+      "checkAutomatically": "ON_LOAD",
+      "fallbackToCacheTimeout": 60000
+    }
   }
 }
