@@ -2,7 +2,7 @@ export const channels = [
   {
     index: 0,
     title: "hot",
-    subreddit: "videos"
+    subreddit: "videos;mealtimevideos"
     // icon: require("../assets/channel_icons/007-popcorn.png")
   },
   {
