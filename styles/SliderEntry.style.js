@@ -40,34 +40,33 @@ export default StyleSheet.create({
     height: 50
   },
   slideInnerContainer: {
-    backgroundColor: colors.black,
-    width: itemWidth,
-    height: viewportHeight,
-    paddingHorizontal: itemHorizontalMargin
-  },
-  videoContainer: {
-    flex: 1,
-    // marginBottom: IS_IOS ? 0 : -1, // Prevent a random Android rendering issue
-    backgroundColor: "white"
-  },
-  textContainer: {
-    bottom: 0,
-    position: "absolute",
-    zIndex: 10,
-    width: "100%",
-    justifyContent: "center",
-    backgroundColor: "rgba(0, 0, 0, .3)",
+    // paddingHorizontal: itemHorizontalMargin
     flex: 1
   },
-  textContainerEven: {
-    backgroundColor: colors.black
+  videoContainer: {
+    flex: 1
+    // marginBottom: IS_IOS ? 0 : -1, // Prevent a random Android rendering issue
+    // backgroundColor: "blue"
+  },
+  textContainer: {
+    backgroundColor: "rgba(0, 0, 0, .3)",
+    bottom: 0,
+    flex: 1,
+    height: 50,
+    // justifyContent: "center",
+    position: "absolute",
+    width: "100%",
+    zIndex: 10
   },
   title: {
+    // borderWidth: 1,
+    // borderColor: "white",
     color: "rgba(255, 255, 255, .9)",
-    fontSize: 13,
+    fontSize: 19,
     fontWeight: "bold",
     // fontFamily: "OpenSans",
-    padding: 10
+    padding: 10,
+    width: "90%"
   },
   titleEven: {
     color: "white"

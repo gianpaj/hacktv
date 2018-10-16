@@ -7,7 +7,7 @@ import {
   View,
   WebView
 } from "react-native";
-import { Video } from "expo";
+// import { Video } from "expo";
 import PropTypes from "prop-types";
 // import { ParallaxImage } from "react-native-snap-carousel";
 
@@ -151,6 +151,7 @@ export default class SliderEntry extends PureComponent {
 
   renderDescription() {
     const { data } = this.props;
+
     return (
       <Animated.View
         style={[
@@ -162,11 +163,11 @@ export default class SliderEntry extends PureComponent {
         <Text style={styles.title} numberOfLines={2}>
           {data.title}
         </Text>
-        {data.subtitle && (
+        {/* {data.subtitle && (
           <Text style={styles.subtitle} numberOfLines={2}>
             {data.subtitle}
           </Text>
-        )}
+        )} */}
       </Animated.View>
     );
   }
@@ -178,7 +179,7 @@ export default class SliderEntry extends PureComponent {
       return (
         <View style={styles.slideInnerContainer}>
           <View style={styles.videoContainer}>{this.renderVideo(data)}</View>
-          {this.renderDescription()}
+          {/* {this.renderDescription()} */}
         </View>
       );
     }

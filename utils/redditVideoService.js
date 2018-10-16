@@ -87,8 +87,9 @@ module.exports = function RedditVideoService() {
 
       query.fetch(res => {
         const videos = res.data.children
-          .filter(x => isVideoObject(x))
-          .map(x => childObjectToDomainVideoModel(x));
+          .filter(isVideoObject)
+          .map(childObjectToDomainVideoModel)
+          .filter(v => v.type === "youtube");
 
         result(videos);
       });

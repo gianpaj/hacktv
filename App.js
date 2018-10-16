@@ -1,3 +1,7 @@
+/**
+ * @format
+ * @flow
+ */
 import React, { Component } from "react";
 import { View, Image, SafeAreaView, StatusBar } from "react-native";
 import Carousel from "react-native-snap-carousel";

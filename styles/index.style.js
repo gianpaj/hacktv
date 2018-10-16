@@ -24,13 +24,17 @@ export default StyleSheet.create({
     tintColor: "white"
   },
   channelText: {
-    top: 10,
+    bottom: 15,
+    fontWeight: "bold",
+    borderRadius: 5,
+    // borderWidth: 1,
+    // borderColor: light,
     position: "absolute",
     left: 10,
-    paddingTop: 5,
-    fontSize: 18,
-    zIndex: 10,
-    color: "white"
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    fontSize: 18
+    // zIndex: 10,
   },
   slider: {
     // marginTop: 15,

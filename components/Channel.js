@@ -24,8 +24,9 @@ export default class Channel extends Component {
   async componentDidMount() {
     const { item } = this.props.item;
     const videos = await redditVideoService().loadHot(item.subreddit);
+    // console.warn(videos.map(v => v.type));
 
-    if (__DEV__) console.log({ channelName: item.subreddit, videos: videos });
+    if (__DEV__) console.log({ channelName: item.subreddit, videos });
 
     this.setState({ videos, loading: false });
   }
@@ -76,13 +77,7 @@ export default class Channel extends Component {
 
     return (
       <View>
-        {/* <Image source={item.icon} style={styles.channelIcon} /> */}
         {/* <Text style={styles.channelText}>{item.title}</Text> */}
-        <Animated.Text
-          style={[styles.channelText, { opacity: this.state.fadeAnim }]}
-        >
-          {item.title}
-        </Animated.Text>
         <Carousel
           containerCustomStyle={styles.slider}
           contentContainerCustomStyle={styles.sliderContentContainer}
@@ -101,11 +96,19 @@ export default class Channel extends Component {
           removeClippedSubviews
           initialNumToRender={2}
           windowSize={2}
-          // scrollInterpolator={
-          //   scrollInterpolators[`scrollInterpolator${refNumber}`]
-          // }
-          // slideInterpolatedStyle={animatedStyles[`animatedStyles${refNumber}`]}
         />
+        <Animated.Text
+          style={[
+            styles.channelText,
+            {
+              opacity: this.state.fadeAnim,
+              backgroundColor: item.bgColor || "red",
+              color: item.textColor || "white"
+            }
+          ]}
+        >
+          #{item.title}
+        </Animated.Text>
       </View>
     );
   }
