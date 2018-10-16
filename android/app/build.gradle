@@ -102,7 +102,7 @@ def googleVer = getGitVersion()
  * Upload all the APKs to the Play Store and people will download
  * the correct one based on the CPU architecture of their device.
  */
-def enableSeparateBuildPerCPUArchitecture = false
+def enableSeparateBuildPerCPUArchitecture = true
 
 /**
  * Run Proguard to shrink the Java bytecode in release builds.
@@ -114,14 +114,14 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
-        applicationId "com.walnut"
+        applicationId "com.walnut.tv"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode googleVer
         versionName userVer
-        ndk {
-            abiFilters "armeabi-v7a", "x86"
-        }
+        // ndk {
+        //     abiFilters "armeabi-v7a", "x86"
+        // }
     }
     splits {
         abi {
