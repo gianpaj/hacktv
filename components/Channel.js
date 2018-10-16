@@ -76,13 +76,7 @@ export default class Channel extends Component {
 
     return (
       <View>
-        {/* <Image source={item.icon} style={styles.channelIcon} /> */}
         {/* <Text style={styles.channelText}>{item.title}</Text> */}
-        <Animated.Text
-          style={[styles.channelText, { opacity: this.state.fadeAnim }]}
-        >
-          {item.title}
-        </Animated.Text>
         <Carousel
           containerCustomStyle={styles.slider}
           contentContainerCustomStyle={styles.sliderContentContainer}
@@ -101,11 +95,12 @@ export default class Channel extends Component {
           removeClippedSubviews
           initialNumToRender={2}
           windowSize={2}
-          // scrollInterpolator={
-          //   scrollInterpolators[`scrollInterpolator${refNumber}`]
-          // }
-          // slideInterpolatedStyle={animatedStyles[`animatedStyles${refNumber}`]}
         />
+        <Animated.Text
+          style={[styles.channelText, { opacity: this.state.fadeAnim }]}
+        >
+          {item.title}
+        </Animated.Text>
       </View>
     );
   }
