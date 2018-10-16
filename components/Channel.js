@@ -24,8 +24,9 @@ export default class Channel extends Component {
   async componentDidMount() {
     const { item } = this.props.item;
     const videos = await redditVideoService().loadHot(item.subreddit);
+    // console.warn(videos.map(v => v.type));
 
-    if (__DEV__) console.log({ channelName: item.subreddit, videos: videos });
+    if (__DEV__) console.log({ channelName: item.subreddit, videos });
 
     this.setState({ videos, loading: false });
   }
@@ -97,9 +98,16 @@ export default class Channel extends Component {
           windowSize={2}
         />
         <Animated.Text
-          style={[styles.channelText, { opacity: this.state.fadeAnim }]}
+          style={[
+            styles.channelText,
+            {
+              opacity: this.state.fadeAnim,
+              backgroundColor: item.bgColor || "red",
+              color: item.textColor || "white"
+            }
+          ]}
         >
-          {item.title}
+          #{item.title}
         </Animated.Text>
       </View>
     );

@@ -25,14 +25,16 @@ export default StyleSheet.create({
   },
   channelText: {
     bottom: 15,
+    fontWeight: "bold",
+    borderRadius: 5,
     // borderWidth: 1,
-    // borderColor: "white",
+    // borderColor: light,
     position: "absolute",
-    right: 0,
-    paddingRight: 10,
-    fontSize: 18,
+    left: 10,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    fontSize: 18
     // zIndex: 10,
-    color: "white"
   },
   slider: {
     // marginTop: 15,

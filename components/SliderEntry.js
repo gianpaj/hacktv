@@ -179,7 +179,7 @@ export default class SliderEntry extends PureComponent {
       return (
         <View style={styles.slideInnerContainer}>
           <View style={styles.videoContainer}>{this.renderVideo(data)}</View>
-          {this.renderDescription()}
+          {/* {this.renderDescription()} */}
         </View>
       );
     }
