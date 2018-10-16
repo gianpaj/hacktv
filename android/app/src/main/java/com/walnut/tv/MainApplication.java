@@ -1,4 +1,4 @@
-package com.walnut;
+package com.walnut.tv;
 
 import android.app.Application;
 
