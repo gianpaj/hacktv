@@ -13,22 +13,26 @@ import {
   itemHeight
 } from "./styles/SliderEntry.style";
 import Channel from "./components/Channel";
-import styles, { colors } from "./styles/index.style";
+import styles from "./styles/index.style";
 import { channels } from "./static/entries";
 // import { scrollInterpolators, animatedStyles } from "./utils/animations";
 // import { Share } from 'react-native';
 
 export default class example extends Component {
-  get gradient() {
-    return (
-      <LinearGradient
-        colors={[colors.background1, colors.background2]}
-        startPoint={{ x: 1, y: 0 }}
-        endPoint={{ x: 0, y: 1 }}
-        style={styles.gradient}
-      />
-    );
+  constructor(props) {
+    super(props);
+    this.state = { channels };
   }
+
+  onChannelChange = slideIndex => {
+    this.setState(prevState => {
+      const channels = prevState.channels.map(channel => {
+        return { ...channel, isActive: false };
+      });
+      channels[slideIndex].isActive = true;
+      return { channels };
+    });
+  };
 
   render() {
     return (
@@ -36,14 +40,14 @@ export default class example extends Component {
         <StatusBar hidden />
         <Carousel
           containerCustomStyle={styles.slider}
-          data={channels}
+          data={this.state.channels}
           enableSnap
           itemHeight={itemHeight}
           itemWidth={itemWidth}
           renderItem={channel => (
             <Channel item={channel} isActive={channel.item.isActive} />
           )}
-          onSnapToItem={this.onVideoOnScreen}
+          onSnapToItem={this.onChannelChange}
           sliderHeight={slideHeight}
           sliderWidth={sliderWidth}
           // useScrollView

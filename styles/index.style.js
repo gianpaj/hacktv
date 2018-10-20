@@ -6,12 +6,9 @@ export const colors = {
 };
 
 export default StyleSheet.create({
-  safeArea: {
+  container: {
     flex: 1,
     backgroundColor: colors.black
-  },
-  container: {
-    flex: 1
   },
   channelText: {
     bottom: 15,

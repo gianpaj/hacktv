@@ -18,7 +18,7 @@ export default class Channel extends Component {
   state = {
     loading: true,
     fadeAnim: new Animated.Value(1), // Initial value for opacity: 1
-    videos: []
+    videos: null
   };
 
   async componentDidMount() {
@@ -26,11 +26,30 @@ export default class Channel extends Component {
     const videos = await redditVideoService().loadHot(item.subreddit);
     // console.log(videos.map(v => v.type));
 
-    if (item.subreddit === "videos") videos[0].isPlaying = true;
+    if (this.props.isActive) videos[0].isPlaying = true;
 
     if (__DEV__) console.log({ channelName: item.subreddit, videos });
 
     this.setState({ videos, loading: false });
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    if (props.isActive && state.videos) {
+      state.videos[0].isPlaying = true;
+      return {
+        videos: [...state.videos]
+      };
+    } else if (!props.isActive && state.videos) {
+      const videos = state.videos.map(video => {
+        return { ...video, isPlaying: false };
+      });
+      return {
+        videos: [...videos]
+      };
+    }
+
+    // Return null to indicate no change to state.
+    return null;
   }
 
   renderCell = ({ item }) => (
