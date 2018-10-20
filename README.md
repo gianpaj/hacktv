@@ -21,39 +21,48 @@ _Only tested on macOS_
 ### Start development
 
 1. Install the dependencies
+
 ```bash
 yarn
 ```
 
-2. Start the Emulator/Simulator or connect your mobile phone to the computer.
+2. Enter YouToube API key into `config.json`
 
-3. Develop
+```bash
+cp config-example.json config.json
+```
+
+3. Start the Emulator/Simulator or connect your mobile phone to the computer.
+
+4. Develop
+
 ```bash
 react-native run-ios
 # or
 react-native run-android
 ```
-4. Win! :tada: 
+
+5. Win! :tada:
 
 ## Make a Play Store release
 
 1. Copy the `walnut.keystore` file to `android/app/`
 2. Run
 
-    ```bash
-    cd android
-    ./gradlew assembleRelease
-    ```
+   ```bash
+   cd android
+   ./gradlew assembleRelease
+   ```
 
 ## Built With
 
-* [react-native](https://facebook.github.io/react-native/) - A framework for building native apps using React
-* [reddit.js](https://github.com/sahilm/reddit.js) - Reddit API wrapper for the browser
+- [react-native](https://facebook.github.io/react-native/) - A framework for building native apps using React
+- [reddit.js](https://github.com/sahilm/reddit.js) - Reddit API wrapper for the browser
 
 ## Authors
 
-* [gianpaj](https://github.com/gianpaj)
-* [andreyk6](https://github.com/andreyk6)
+- [gianpaj](https://github.com/gianpaj)
+- [andreyk6](https://github.com/andreyk6)
 
 <!-- ## License
 
@@ -61,4 +70,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* Thanks for UCU for organizing the [hackathon](https://www.facebook.com/events/271103630179568/)
+- Thanks for UCU for organizing the [hackathon](https://www.facebook.com/events/271103630179568/)
