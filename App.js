@@ -48,10 +48,10 @@ export default class example extends Component {
             sliderWidth={sliderWidth}
             // useScrollView
             shouldOptimizeUpdates
-            initialNumToRender={1}
-            windowSize={1}
             removeClippedSubviews
             removeclippedsubviews
+            initialNumToRender={2}
+            windowSize={2}
           />
         </View>
       </SafeAreaView>
