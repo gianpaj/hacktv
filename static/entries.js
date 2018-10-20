@@ -14,12 +14,19 @@ export const channels = [
     bgColor: "#08c1d6"
   },
   {
-    title: "cooking",
-    subreddit: "cookingvideos",
-    // icon: require("../assets/channel_icons/003-apple.png")
+    title: "how-to",
+    subreddit: "howto",
+    // icon: require("../assets/channel_icons/004-creative.png")
     textColor: "",
-    bgColor: "#19d608"
+    bgColor: "#ffbf00"
   },
+  // {
+  //   title: "cooking",
+  //   subreddit: "cookingvideos",
+  //   // icon: require("../assets/channel_icons/003-apple.png")
+  //   textColor: "",
+  //   bgColor: "#19d608"
+  // },
   {
     title: "educative",
     subreddit: "educativevideos",
@@ -28,39 +35,11 @@ export const channels = [
     bgColor: "#0868d6"
   },
   {
-    title: "music",
-    subreddit: "music",
-    // icon: require("../assets/channel_icons/005-compact-disc.png")
-    textColor: "",
-    bgColor: "#c808d6"
-  },
-  {
-    title: "funny",
-    subreddit: "contagiouslaughter",
-    // icon: require("../assets/channel_icons/006-laughing.png")
-    textColor: "",
-    bgColor: "#e8d402"
-  },
-  {
     title: "documentaries",
     subreddit: "documentaries",
     // icon: require("../assets/channel_icons/001-internet.png")
     textColor: "",
     bgColor: "#8dbbe0"
-  },
-  // {
-  //   title: "animals",
-  //   subreddit: "aww",
-  //   // icon: require("../assets/channel_icons/008-pawprint.png")
-  //   textColor: "",
-  //   bgColor: "#7dcc16"
-  // },
-  {
-    title: "how-to",
-    subreddit: "howto",
-    // icon: require("../assets/channel_icons/004-creative.png")
-    textColor: "",
-    bgColor: "#ffbf00"
   },
   {
     title: "lectures",
@@ -70,12 +49,36 @@ export const channels = [
     bgColor: "#2308a8"
   },
   {
-    title: "gaming",
-    subreddit: "games",
-    // icon: require("../assets/channel_icons/010-console.png")
+    title: "music",
+    subreddit: "music",
+    // icon: require("../assets/channel_icons/005-compact-disc.png")
     textColor: "",
-    bgColor: "#a80872"
+    bgColor: "#c808d6"
   },
+
+  // {
+  //   title: "funny",
+  //   subreddit: "contagiouslaughter",
+  //   // icon: require("../assets/channel_icons/006-laughing.png")
+  //   textColor: "",
+  //   bgColor: "#e8d402"
+  // },
+  // {
+  // {
+  //   title: "animals",
+  //   subreddit: "aww",
+  //   // icon: require("../assets/channel_icons/008-pawprint.png")
+  //   textColor: "",
+  //   bgColor: "#7dcc16"
+  // },
+
+  // {
+  //   title: "gaming",
+  //   subreddit: "games",
+  //   // icon: require("../assets/channel_icons/010-console.png")
+  //   textColor: "",
+  //   bgColor: "#a80872"
+  // },
   {
     title: "hiking",
     subreddit: "hiking",
