@@ -24,7 +24,9 @@ export default class Channel extends Component {
   async componentDidMount() {
     const { item } = this.props.item;
     const videos = await redditVideoService().loadHot(item.subreddit);
-    // console.warn(videos.map(v => v.type));
+    // console.log(videos.map(v => v.type));
+
+    if (item.subreddit === "videos") videos[0].isPlaying = true;
 
     if (__DEV__) console.log({ channelName: item.subreddit, videos });
 
@@ -37,11 +39,19 @@ export default class Channel extends Component {
       onPause={this.onPause}
       onPlay={this.onPlay}
       data={item}
+      isActive={this.props.isActive}
     />
   );
 
-  onVideoOnScreen = () => {
-    this.child && this.child.onPlay();
+  onVideoOnScreen = slideIndex => {
+    this.setState(prevState => {
+      const videos = prevState.videos.map(video => {
+        return { ...video, isPlaying: false };
+      });
+      videos[slideIndex].isPlaying = true;
+      return { videos };
+    });
+    // this.child && this.child.onPlay();
   };
 
   onPlay = () => {
@@ -79,8 +89,6 @@ export default class Channel extends Component {
       <View>
         {/* <Text style={styles.channelText}>{item.title}</Text> */}
         <Carousel
-          containerCustomStyle={styles.slider}
-          contentContainerCustomStyle={styles.sliderContentContainer}
           data={videos}
           enableSnap
           itemHeight={itemHeight}
@@ -88,7 +96,7 @@ export default class Channel extends Component {
           renderItem={this.renderCell}
           sliderHeight={slideHeight}
           sliderWidth={sliderWidth}
-          // useScrollView
+          useScrollView
           onSnapToItem={this.onVideoOnScreen}
           vertical
           shouldOptimizeUpdates

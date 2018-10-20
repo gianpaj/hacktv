@@ -13,23 +13,13 @@ export default StyleSheet.create({
   container: {
     flex: 1
   },
-  channelIcon: {
-    top: 30,
-    position: "absolute",
-    left: 10,
-    zIndex: 10,
-    resizeMode: "contain",
-    width: 30,
-    height: 40,
-    tintColor: "white"
-  },
   channelText: {
     bottom: 15,
     fontWeight: "bold",
     borderRadius: 5,
     // borderWidth: 1,
     // borderColor: light,
-    position: "absolute",
+    // position: "absolute",
     left: 10,
     paddingHorizontal: 10,
     paddingVertical: 5,
@@ -39,8 +29,5 @@ export default StyleSheet.create({
   slider: {
     // marginTop: 15,
     overflow: "visible" // for custom animations
-  },
-  sliderContentContainer: {
-    // paddingVertical: 10 // for custom animation
   }
 });

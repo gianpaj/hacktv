@@ -1,17 +1,11 @@
 import React, { PureComponent } from "react";
-import {
-  Animated,
-  // AppState,
-  Text,
-  TouchableOpacity,
-  View,
-  WebView
-} from "react-native";
-// import { Video } from "expo";
+import { Animated, Text, View, WebView } from "react-native";
+import YouTube from "react-native-youtube";
 import PropTypes from "prop-types";
-// import { ParallaxImage } from "react-native-snap-carousel";
 
 import styles from "../styles/SliderEntry.style";
+
+import config from "../config";
 
 export default class SliderEntry extends PureComponent {
   videoRef;
@@ -25,7 +19,6 @@ export default class SliderEntry extends PureComponent {
 
   static propTypes = {
     data: PropTypes.object.isRequired
-    // parallax: PropTypes.bool
   };
 
   componentDidMount() {
@@ -75,17 +68,33 @@ export default class SliderEntry extends PureComponent {
     //   data: { illustration },
     //   parallax
     // } = this.props;
+    if (!this.props.data.isPlaying || !this.props.isActive) return null;
 
-    if (item.type !== "youtube") return null;
+    // if (item.type !== "youtube") return null;
     return (
-      <WebView
-        style={{ flex: 1 }}
-        javaScriptEnabled={true}
-        source={{
-          uri: `https://www.youtube.com/embed/${
-            item.videoUrl
-          }?rel=0&autoplay=1&controls=0`
-        }}
+      // <WebView
+      //   style={{ flex: 1 }}
+      //   javaScriptEnabled={true}
+      //   source={{
+      //     uri: `https://www.youtube.com/embed/${
+      //       item.videoUrl
+      //     }?rel=0&autoplay=1&controls=0`
+      //   }}
+      // />
+      <YouTube
+        controls={2}
+        apiKey={config.YOUTUBE_API}
+        videoId={item.videoUrl}
+        play // control playback of video with true/false
+        // fullscreen // control whether the video should play in fullscreen or inline
+        // loop // control whether the video should loop when ended
+
+        // onReady={e => this.setState({ isReady: true })}
+        // onChangeState={e => this.setState({ status: e.state })}
+        // onChangeQuality={e => this.setState({ quality: e.quality })}
+        // onError={e => this.setState({ error: e.error })}
+        style={{ alignSelf: "stretch", flex: 1 }}
+        resumePlayAndroid
       />
     );
     /*
@@ -173,35 +182,12 @@ export default class SliderEntry extends PureComponent {
   }
 
   render() {
-    const { data } = this.props;
-
-    if (data.type == "youtube") {
-      return (
-        <View style={styles.slideInnerContainer}>
-          <View style={styles.videoContainer}>{this.renderVideo(data)}</View>
-          {/* {this.renderDescription()} */}
-        </View>
-      );
-    }
-
     return (
       <View style={styles.slideInnerContainer}>
-        <TouchableOpacity
-          activeOpacity={1}
-          style={styles.slideInnerContainer}
-          onPress={async () => {
-            if (!this.videoRef) return;
-            const status = await this.videoRef.getStatusAsync();
-
-            if (status.isPlaying) {
-              return this.onPause();
-            }
-            this.onPlay();
-          }}
-        >
-          <View style={styles.videoContainer}>{this.renderVideo(data)}</View>
-          {this.renderDescription()}
-        </TouchableOpacity>
+        <View style={styles.videoContainer}>
+          {this.renderVideo(this.props.data)}
+        </View>
+        {/* {this.renderDescription()} */}
       </View>
     );
   }

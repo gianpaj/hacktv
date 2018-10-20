@@ -1,5 +1,6 @@
 export const channels = [
   {
+    isActive: true,
     title: "hot",
     subreddit: "videos",
     // icon: require("../assets/channel_icons/007-popcorn.png")
