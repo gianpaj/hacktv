@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 import {
   Animated,
-  AppState,
+  // AppState,
   Text,
   TouchableOpacity,
   View,
@@ -17,23 +17,23 @@ export default class SliderEntry extends PureComponent {
   videoRef;
 
   state = {
-    appState: AppState.currentState,
+    // appState: AppState.currentState,
     finished: false,
     fadeAnim: new Animated.Value(1), // Initial value for opacity: 1
     loading: true
   };
 
   static propTypes = {
-    data: PropTypes.object.isRequired,
-    parallax: PropTypes.bool
+    data: PropTypes.object.isRequired
+    // parallax: PropTypes.bool
   };
 
   componentDidMount() {
-    AppState.addEventListener("change", this._handleAppStateChange);
+    // AppState.addEventListener("change", this._handleAppStateChange);
   }
 
   componentWillUnmount() {
-    AppState.removeEventListener("change", this._handleAppStateChange);
+    // AppState.removeEventListener("change", this._handleAppStateChange);
     this.videoRef && this.videoRef.pauseAsync();
   }
 
@@ -66,9 +66,9 @@ export default class SliderEntry extends PureComponent {
     this.props.onPause();
   };
 
-  _handleAppStateChange = nextAppState => {
-    this.setState({ appState: nextAppState });
-  };
+  // _handleAppStateChange = nextAppState => {
+  //   this.setState({ appState: nextAppState });
+  // };
 
   renderVideo = item => {
     // const {
@@ -76,20 +76,19 @@ export default class SliderEntry extends PureComponent {
     //   parallax
     // } = this.props;
 
-    if (item.type == "youtube" && this.state.appState == "active") {
-      return (
-        <WebView
-          style={{ flex: 1 }}
-          javaScriptEnabled={true}
-          source={{
-            uri: `https://www.youtube.com/embed/${
-              item.videoUrl
-            }?rel=0&autoplay=1&controls=0`
-          }}
-        />
-      );
-    }
-
+    if (item.type !== "youtube") return null;
+    return (
+      <WebView
+        style={{ flex: 1 }}
+        javaScriptEnabled={true}
+        source={{
+          uri: `https://www.youtube.com/embed/${
+            item.videoUrl
+          }?rel=0&autoplay=1&controls=0`
+        }}
+      />
+    );
+    /*
     return (
       <Video
         ref={r => (this.videoRef = r)}
@@ -131,6 +130,7 @@ export default class SliderEntry extends PureComponent {
         // useNativeControls
       />
     );
+    */
   };
 
   onShareBtnClick(videoUrl) {

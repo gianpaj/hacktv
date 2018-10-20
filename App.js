@@ -3,7 +3,7 @@
  * @flow
  */
 import React, { Component } from "react";
-import { View, Image, SafeAreaView, StatusBar } from "react-native";
+import { View, SafeAreaView, StatusBar } from "react-native";
 import Carousel from "react-native-snap-carousel";
 
 import {
@@ -14,7 +14,7 @@ import {
 } from "./styles/SliderEntry.style";
 import Channel from "./components/Channel";
 import styles, { colors } from "./styles/index.style";
-import { channels, icons } from "./static/entries";
+import { channels } from "./static/entries";
 // import { scrollInterpolators, animatedStyles } from "./utils/animations";
 // import { Share } from 'react-native';
 
@@ -48,8 +48,8 @@ export default class example extends Component {
             sliderWidth={sliderWidth}
             // useScrollView
             shouldOptimizeUpdates
-            initialNumToRender={2}
-            windowSize={2}
+            initialNumToRender={1}
+            windowSize={1}
             removeClippedSubviews
             removeclippedsubviews
           />
