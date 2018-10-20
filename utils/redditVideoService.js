@@ -1,60 +1,58 @@
 require("reddit.js");
 
 module.exports = function RedditVideoService() {
-  function isVideoObject(child) {
-    if (child.data.is_video === true) {
+  function isVideoObject({ data }) {
+    // reddit videos
+    if (data.is_video === true) {
       return true;
     }
     // debug only - return only reddit videos
     // return false;
 
-    if (child.data.media != null) {
+    if (data.media !== null) {
       return (
-        child.data.media.type.includes("youtube.com") ||
-        child.data.media.type.includes("vimeo.com")
+        data.media.type.includes("youtube.com") ||
+        data.media.type.includes("vimeo.com")
       );
     }
     return false;
   }
 
-  function childObjectToDomainVideoModel(child) {
+  function childObjectToDomainVideoModel({ data }) {
     const result = {};
-    result.title = child.data.title;
-    result.id = child.data.id;
-    result.redditLink = "https://www.reddit.com" + child.data.permalink;
-    result.created_utc = child.data.created_utc;
+    result.title = data.title;
+    result.id = data.id;
+    result.redditLink = "https://www.reddit.com" + data.permalink;
+    result.created_utc = data.created_utc;
 
-    if (child.data.preview && child.data.preview.images) {
-      const images = child.data.preview.images[0].resolutions;
+    if (data.preview && data.preview.images) {
+      const images = data.preview.images[0].resolutions;
       result.posterSource = images[images.length - 1].url;
     }
 
     // reddit video
-    if (child.data.is_video) {
-      result.videoUrl = child.data.media.reddit_video.fallback_url;
+    if (data.is_video) {
+      result.videoUrl = data.media.reddit_video.fallback_url;
       result.type = "reddit";
       return result;
     }
 
-    if (child.data.media === undefined) {
-      return {};
-    }
+    // if (data.media === undefined) {
+    //   return {};
+    // }
 
     // youtube video
-    if (child.data.media.type === "youtube.com") {
+    if (data.media.type === "youtube.com") {
       var startIndex =
-        child.data.media.oembed.html.indexOf("/embed/") + "/embed/".length;
-      var endIndex = child.data.media.oembed.html.indexOf("?feature=oembed");
+        data.media.oembed.html.indexOf("/embed/") + "/embed/".length;
+      var endIndex = data.media.oembed.html.indexOf("?feature=oembed");
 
-      result.videoUrl = child.data.media.oembed.html.substring(
-        startIndex,
-        endIndex
-      );
+      result.videoUrl = data.media.oembed.html.substring(startIndex, endIndex);
       result.type = "youtube";
     }
 
     // vimeo video
-    if (child.data.media.type === "vimeo.com") {
+    if (data.media.type === "vimeo.com") {
       result.videoUrl = "vimeo.com";
       result.type = "vimeo";
     }
@@ -114,9 +112,8 @@ module.exports = function RedditVideoService() {
     const promises = channel_s.map(channel => _loadHot(channel));
 
     const arrayOfArrayOfVideos = await Promise.all(promises);
-    return [].concat
-      .apply([], arrayOfArrayOfVideos)
-      .sort(dynamicSort("created_utc"));
+    return [].concat.apply([], arrayOfArrayOfVideos);
+    // .sort(dynamicSort("created_utc"));
   }
 
   // public interface
