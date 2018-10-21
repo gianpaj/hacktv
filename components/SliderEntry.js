@@ -82,7 +82,7 @@ export default class SliderEntry extends PureComponent {
       //   }}
       // />
       <YouTube
-        controls={2}
+        controls={0}
         apiKey={config.YOUTUBE_API}
         videoId={item.videoUrl}
         play // control playback of video with true/false
