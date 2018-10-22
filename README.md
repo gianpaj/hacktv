@@ -1,7 +1,7 @@
 # [Walnut](walnut.tv)
 
-Watch something interesting.
-[Android](https://play.google.com/store/apps/details?id=com.walnut.tv) and iOS app (coming soon)
+Always interesting videos.
+[Android](https://play.google.com/store/apps/details?id=com.walnut.tv) and [iOS app](https://itunes.apple.com/us/app/walnut-tv/id1439048706?ls=1&mt=8).
 
 [![download on the Play Store](https://thumbs.gfycat.com/UnnaturalHorribleCrossbill-size_restricted.gif)](https://play.google.com/store/apps/details?id=com.walnut.tv)
 
