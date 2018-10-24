@@ -77,20 +77,26 @@ module.exports = function RedditVideoService() {
     return new Promise((result, reject) => {
       if (typeof channel !== "string") {
         return reject(
-          new Error("Bad channel argument value. Channel shuould be a string")
+          new Error("Bad channel argument value. Channel should be a string")
         );
       }
       let query = reddit.hot(channel).limit(100);
       if (after !== null) query = query.after(after);
 
-      query.fetch(res => {
-        const videos = res.data.children
-          .filter(isVideoObject)
-          .map(childObjectToDomainVideoModel)
-          .filter(v => v.type === "youtube");
+      query.fetch(
+        res => {
+          const videos = res.data.children
+            .filter(isVideoObject)
+            .map(childObjectToDomainVideoModel)
+            .filter(v => v.type === "youtube");
 
-        result(videos);
-      });
+          result(videos);
+        },
+        function(err) {
+          reject(err);
+          // err contains the error from Reddit
+        }
+      );
     });
   }
 
