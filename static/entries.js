@@ -35,6 +35,13 @@ export const channels = [
     bgColor: "#0868d6"
   },
   {
+    title: "artisan",
+    subreddit: "artisanvideos",
+    // icon: require("../assets/channel_icons/009-eyeglasses.png")
+    textColor: "",
+    bgColor: "#ff69b4"
+  },
+  {
     title: "documentaries",
     subreddit: "documentaries",
     // icon: require("../assets/channel_icons/001-internet.png")
