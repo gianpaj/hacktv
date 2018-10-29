@@ -85,9 +85,9 @@ def getNpmVersion() {
     return packageJson["version"]
 }
 
-/* calculated from git commits to give sequential integers */
+/* calculated from git commits from webview to give sequential integers */
 def getGitVersion() {
-    def process = "git rev-list master --first-parent --count".execute()
+    def process = "git rev-list webview --first-parent --count".execute()
     return process.text.toInteger()
 }
 
