@@ -97,7 +97,7 @@ export default class Channel extends Component {
           initialNumToRender={2}
           windowSize={2}
         />
-        <Animated.Text
+        {/* <Animated.Text
           style={[
             styles.channelText,
             {
@@ -108,7 +108,7 @@ export default class Channel extends Component {
           ]}
         >
           #{item.title}
-        </Animated.Text>
+        </Animated.Text> */}
       </View>
     );
   }
