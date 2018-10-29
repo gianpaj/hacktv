@@ -84,7 +84,7 @@ export default class SliderEntry extends PureComponent {
         source={{
           uri: `https://www.youtube.com/embed/${
             item.videoUrl
-          }?rel=0&autoplay=1&controls=0`
+          }?rel=0&autoplay=1&controls=1`
         }}
       />
     );
