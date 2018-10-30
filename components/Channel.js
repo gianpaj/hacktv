@@ -26,7 +26,7 @@ export default class Channel extends Component {
     const videos = await redditVideoService().loadHot(item.subreddit);
     // console.warn(videos.map(v => v.type));
 
-    if (__DEV__) console.log({ channelName: item.subreddit, videos });
+    if (__DEV__) console.log({ title: item.title, videos });
 
     this.setState({ videos, loading: false });
   }

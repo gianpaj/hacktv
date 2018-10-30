@@ -37,12 +37,11 @@
 		2D16E6881FA4F8E400B85C8A /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D16E6891FA4F8E400B85C8A /* libReact.a */; };
 		2DCD954D1E0B4F2C00145EB5 /* walnutTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* walnutTests.m */; };
 		2DF0FFEE2056DD460020B375 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA31DF850E9000B6D8A /* libReact.a */; };
-		40B7B4E3AF02405CBA571D53 /* libRCTYouTube.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 294C0F5112914851811EFB14 /* libRCTYouTube.a */; };
 		58CC56D6218881640040D692 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 58CC56D5218881640040D692 /* GoogleService-Info.plist */; };
+		58CC575C218888670040D692 /* libRNFirebase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58CC56D4218881500040D692 /* libRNFirebase.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		8DDF044277671D228E790155 /* libPods-walnut.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C4D1ECC26092A9A49B288D1 /* libPods-walnut.a */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
-		E8787F2681634539A3905AA8 /* libRNFirebase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF25291A85B84E0CAA175FC9 /* libRNFirebase.a */; };
 		F4E96BE9F2E138853FA5EF8B /* libPods-walnutTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A0936107D778FE64CF8500CB /* libPods-walnutTests.a */; };
 /* End PBXBuildFile section */
 
@@ -285,13 +284,6 @@
 			remoteGlobalIDString = 3D3CD9181DE5FBD800167DC4;
 			remoteInfo = "jschelpers-tvOS";
 		};
-		58B13B812173BF1700423A1F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D52995C8A1F443DCAC442B16 /* RCTYouTube.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 8BDB9BC91B4289AE00EF9FEF;
-			remoteInfo = RCTYouTube;
-		};
 		58CC56D3218881500040D692 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E202FDD242354AB086313074 /* RNFirebase.xcodeproj */;
@@ -358,7 +350,6 @@
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		168F636C311A48B051DBF317 /* Pods-walnut.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-walnut.release.xcconfig"; path = "Pods/Target Support Files/Pods-walnut/Pods-walnut.release.xcconfig"; sourceTree = "<group>"; };
 		24D1A69BFAD214ED9ED36476 /* Pods-walnut.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-walnut.debug.xcconfig"; path = "Pods/Target Support Files/Pods-walnut/Pods-walnut.debug.xcconfig"; sourceTree = "<group>"; };
-		294C0F5112914851811EFB14 /* libRCTYouTube.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTYouTube.a; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* walnut-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "walnut-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* walnut-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "walnut-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -373,7 +364,6 @@
 		A0936107D778FE64CF8500CB /* libPods-walnutTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-walnutTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
 		AEE9162120375C7302610258 /* Pods-walnut-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-walnut-tvOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-walnut-tvOSTests/Pods-walnut-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
-		D52995C8A1F443DCAC442B16 /* RCTYouTube.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTYouTube.xcodeproj; path = "../node_modules/react-native-youtube/RCTYouTube.xcodeproj"; sourceTree = "<group>"; };
 		DDF737904DFA8F60F6212B64 /* Pods-walnut-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-walnut-tvOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-walnut-tvOSTests/Pods-walnut-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E202FDD242354AB086313074 /* RNFirebase.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFirebase.xcodeproj; path = "../node_modules/react-native-firebase/ios/RNFirebase.xcodeproj"; sourceTree = "<group>"; };
 		EF25291A85B84E0CAA175FC9 /* libRNFirebase.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNFirebase.a; sourceTree = "<group>"; };
@@ -393,6 +383,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58CC575C218888670040D692 /* libRNFirebase.a in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
 				11D1A2F320CAFA9E000508D9 /* libRCTAnimation.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
@@ -405,8 +396,6 @@
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
-				40B7B4E3AF02405CBA571D53 /* libRCTYouTube.a in Frameworks */,
-				E8787F2681634539A3905AA8 /* libRNFirebase.a in Frameworks */,
 				8DDF044277671D228E790155 /* libPods-walnut.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -582,18 +571,9 @@
 		58B13B582173BF1500423A1F /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
-				294C0F5112914851811EFB14 /* libRCTYouTube.a */,
 				EF25291A85B84E0CAA175FC9 /* libRNFirebase.a */,
 			);
 			name = "Recovered References";
-			sourceTree = "<group>";
-		};
-		58B13B7E2173BF1600423A1F /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				58B13B822173BF1700423A1F /* libRCTYouTube.a */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		58CC56AB218881500040D692 /* Products */ = {
@@ -637,7 +617,6 @@
 				832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */,
 				00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */,
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
-				D52995C8A1F443DCAC442B16 /* RCTYouTube.xcodeproj */,
 				E202FDD242354AB086313074 /* RNFirebase.xcodeproj */,
 			);
 			name = Libraries;
@@ -856,10 +835,6 @@
 				{
 					ProductGroup = 139FDEE71B06529A00C62182 /* Products */;
 					ProjectRef = 139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */;
-				},
-				{
-					ProductGroup = 58B13B7E2173BF1600423A1F /* Products */;
-					ProjectRef = D52995C8A1F443DCAC442B16 /* RCTYouTube.xcodeproj */;
 				},
 				{
 					ProductGroup = 146834001AC3E56700842450 /* Products */;
@@ -1103,13 +1078,6 @@
 			fileType = archive.ar;
 			path = libjschelpers.a;
 			remoteRef = 3DAD3EAE1DF850E9000B6D8A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		58B13B822173BF1700423A1F /* libRCTYouTube.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRCTYouTube.a;
-			remoteRef = 58B13B812173BF1700423A1F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		58CC56D4218881500040D692 /* libRNFirebase.a */ = {
@@ -1427,6 +1395,10 @@
 				);
 				INFOPLIST_FILE = walnut/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1452,6 +1424,10 @@
 				);
 				INFOPLIST_FILE = walnut/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
