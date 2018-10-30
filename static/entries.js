@@ -19,7 +19,8 @@ export const channels = [
   },
   {
     title: "how to",
-    subreddit: "howto",
+    subreddit:
+      "howto;maker;maker;upcycling;DIY;fixit;TechDIY;reuseit;creativegardening;easyfix;woodworking;FastWorkers;lifehacks",
     textColor: "",
     bgColor: "#1f373d"
   },
@@ -53,7 +54,7 @@ export const channels = [
   },
   {
     title: "educational",
-    subreddit: "physics;math;psychology;space;biology;awwducational",
+    subreddit: "physics;math;psychology;space;biology",
     textColor: "",
     bgColor: "#0868d6"
   },
@@ -72,9 +73,9 @@ export const channels = [
   {
     title: "animaltherapy",
     subreddit:
-      "aww;cats;animalsbeingbros;Awwducational;dogs;thisismylifenow;blep;eyebeach;tippytaps;awww",
+      "aww;cats;animalsbeingbros;awwducational;dogs;thisismylifenow;blep;eyebeach;tippytaps;awww",
     textColor: "",
-    bgColor: "#ff4health238"
+    bgColor: "#ffff00"
   }
 
   // {
