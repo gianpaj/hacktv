@@ -101,20 +101,15 @@ module.exports = function RedditVideoService() {
   }
 
   /**
-   * Get videos from a subreddit
+   * Get videos from subreddit(s)
+   *
    * @param {string} channel_s one or more channels - e.g. 'funny' or' 'funny;cool'
    * @param {*} after reddit id to load more videos
    */
   async function loadHot(channel_s, after) {
-    // if only single channel
-    if (channel_s === "string") {
-      // just a single channel name passed - return videos for the channel
-      return _loadHot(channel_s, after);
-      // if it contains ';' then it should be converted into an array of strings
-    }
-
-    // TODO: implement "after" for multiple channels!!!
+    // TODO: implement "after" for multiple channels
     channel_s = channel_s.split(";");
+    // console.warn("fetching", channel_s.length, "channels");
     const promises = channel_s.map(channel => _loadHot(channel));
 
     const arrayOfArrayOfVideos = await Promise.all(promises);
