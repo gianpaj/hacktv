@@ -2225,116 +2225,12 @@ expect@^23.6.0:
   resolved "https://registry.yarnpkg.com/expect/-/expect-23.6.0.tgz#1e0c8d3ba9a581c87bd71fb9bc8862d443425f98"
   integrity sha512-dgSoOHgmtn/aDGRVFWclQyPDKl2CQRq0hmIEoUAuQs/2rn2NcvCWcSCovm6BLeuB/7EZuLGu2QfnR+qRt5OM4w==
   dependencies:
-<<<<<<< Updated upstream
-    expo-core "~1.1.0"
-
-expo-permissions@~1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/expo-permissions/-/expo-permissions-1.1.0.tgz#45dbeea680c1065d13aa451a41ab3af46fd34e67"
-  integrity sha512-SAbnQONPeGvYfBg2RLgYvbH4egLOw7I2W9krufWtAo0ckvw9qvonff1fPWglUfs8AYg9gaTEX2uvSnFkwG5vjw==
-  dependencies:
-    expo-core "~1.1.0"
-    expo-permissions-interface "~1.1.0"
-
-expo-print@~1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/expo-print/-/expo-print-1.0.0.tgz#dacc797614c5062d003dc29cc4da67d661ed3f9f"
-  integrity sha512-GXYukrO40LFZPPK6QBkAFFlDydWSGN9XUIUB62/dd2HqaPn/pBnALCd15Bh8E+WzqwFKfqp7UOm45HlrHgoUSw==
-  dependencies:
-    babel-preset-expo "^4.0.0"
-    expo-core "~1.1.0"
-
-expo-react-native-adapter@~1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/expo-react-native-adapter/-/expo-react-native-adapter-1.1.1.tgz#a8a4bcd8d17323924aac991ac727e9bcab9da6e1"
-  integrity sha512-I2p+IOa3CWKbzbJuAgJaAAdmbZh4o+dfvP4zedDyIGMsma8i807nhqH/864le6/HHnuSJTphWSpRuvvUapw2OQ==
-  dependencies:
-    expo-core "~1.1.0"
-    expo-image-loader-interface "~1.0.0"
-    expo-permissions-interface "~1.1.0"
-    lodash.omit "^4.5.0"
-    lodash.pick "^4.4.0"
-    prop-types "^15.6.1"
-
-expo-sensors-interface@~1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/expo-sensors-interface/-/expo-sensors-interface-1.0.2.tgz#522ce6724409000ae6fd05c8775163089342ea09"
-  integrity sha512-I8q6gbekGmNSoRNA8k13nGB3mxYZ0G/F87oa1DSriV3qzl0ElWNvoHJQ2rN1sQqypvug4R0Y0WxCMNeBniIzyQ==
-  dependencies:
-    expo-core "~1.1.0"
-
-expo-sensors@~1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/expo-sensors/-/expo-sensors-1.0.2.tgz#bdfe10ab0b25c64cc1c40bdf6cd3f0899f07c860"
-  integrity sha512-tIl7BWcQc2a31c+k1NpK0rCswX7V99mOhtln7ySSuWfoYDV/Jo6NsxOmZtlE/8xXy7xI7Gt2OhrvXVUf4z/lNQ==
-  dependencies:
-    expo-core "~1.1.0"
-    expo-sensors-interface "~1.0.2"
-    invariant "^2.2.4"
-
-expo-sms@~1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/expo-sms/-/expo-sms-1.0.2.tgz#9856b4fbd2c6c62de14a5a3213c1d67aad46d72d"
-  integrity sha512-0+0JMiP7yALBNSYol1v1OFPOlKkVNzdCfgFBmAYTn3nJ1cSr938QwgLE6tReNdQvQwXGcbr7VfdlQbWx6gnF5g==
-  dependencies:
-    expo-core "~1.1.0"
-    expo-permissions-interface "~1.1.0"
-
-expo@^30.0.1:
-  version "30.0.1"
-  resolved "https://registry.yarnpkg.com/expo/-/expo-30.0.1.tgz#2fae2d20b2f71d90e9533030d3671f70d4a18814"
-  integrity sha512-QyhASiKUIhVF3OWXQHqSvLE9v8F3YeKyeHhYMkB1nIb/J1cX7u/FTYUy921iBYw/S8YYOfEwoNyIGgOSJftXYg==
-  dependencies:
-    "@expo/vector-icons" "^6.3.1"
-    "@expo/websql" "^1.0.1"
-    babel-preset-expo "^4.0.0"
-    expo-ads-admob "~1.0.0"
-    expo-analytics-segment "~1.0.0"
-    expo-asset "~1.1.0"
-    expo-barcode-scanner "~1.0.0"
-    expo-camera "~1.1.0"
-    expo-constants "~1.0.2"
-    expo-contacts "~1.0.0"
-    expo-core "~1.1.0"
-    expo-face-detector "~1.0.2"
-    expo-file-system "~1.0.2"
-    expo-font "~1.0.0"
-    expo-gl "~1.0.2"
-    expo-local-authentication "~1.0.0"
-    expo-location "~1.0.0"
-    expo-media-library "~1.0.0"
-    expo-payments-stripe "~1.0.0"
-    expo-permissions "~1.1.0"
-    expo-print "~1.0.0"
-    expo-react-native-adapter "~1.1.1"
-    expo-sensors "~1.0.2"
-    expo-sms "~1.0.2"
-    fbemitter "^2.1.1"
-    invariant "^2.2.2"
-    lodash.map "^4.6.0"
-    lodash.omit "^4.5.0"
-    lodash.zipobject "^4.1.3"
-    lottie-react-native "2.5.0"
-    md5-file "^3.2.3"
-    pretty-format "^21.2.1"
-    prop-types "^15.6.0"
-    qs "^6.5.0"
-    react-native-branch "2.2.5"
-    react-native-gesture-handler "1.0.6"
-    react-native-maps "0.21.0"
-    react-native-reanimated "1.0.0-alpha.6"
-    react-native-screens "^1.0.0-alpha.5"
-    react-native-svg "6.2.2"
-    uuid-js "^0.7.5"
-    whatwg-fetch "^2.0.4"
-=======
     ansi-styles "^3.2.0"
     jest-diff "^23.6.0"
     jest-get-type "^22.1.0"
     jest-matcher-utils "^23.6.0"
     jest-message-util "^23.4.0"
     jest-regex-util "^23.3.0"
->>>>>>> Stashed changes
 
 extend-shallow@^1.1.2:
   version "1.1.4"
@@ -4508,6 +4404,11 @@ onetime@^2.0.0:
   dependencies:
     mimic-fn "^1.0.0"
 
+opencollective-postinstall@^2.0.0:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/opencollective-postinstall/-/opencollective-postinstall-2.0.1.tgz#798e83e168f7b91949061c2683f762af747f17cc"
+  integrity sha512-saQQ9hjLwu/oS0492eyYotoh+bra1819cfAT5rjY/e4REWwuc8IgZ844Oo44SiftWcJuBiqp0SA0BFVbmLX0IQ==
+
 opn@^3.0.2:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/opn/-/opn-3.0.3.tgz#b6d99e7399f78d65c3baaffef1fb288e9b85243a"
@@ -4804,9 +4705,6 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-<<<<<<< Updated upstream
-prop-types@^15.5.10, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2:
-=======
 prompts@^0.1.9:
   version "0.1.14"
   resolved "https://registry.yarnpkg.com/prompts/-/prompts-0.1.14.tgz#a8e15c612c5c9ec8f8111847df3337c9cbd443b2"
@@ -4816,7 +4714,6 @@ prompts@^0.1.9:
     sisteransi "^0.1.1"
 
 prop-types@^15.5.8, prop-types@^15.6.1, prop-types@^15.6.2:
->>>>>>> Stashed changes
   version "15.6.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.2.tgz#05d5ca77b4453e985d60fc7ff8c859094a497102"
   integrity sha512-3pboPvLiWD7dkI3qf3KbUe6hKFKa52w+AE0VCqECtf+QHAKgOL37tTaNCnuX1nAAQ4ZhyP+kYVKf8rLmJ/feDQ==
@@ -4904,6 +4801,14 @@ react-is@^16.6.0-alpha.8af6728:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.6.0-alpha.8af6728.tgz#3ce01f13f164b90a76ad902735834fc12d06e30e"
   integrity sha512-F65AeMavskvRglteO7dC0Nvq3Br1ESnpCOG5M6fenQX52Uhpt6eCI0vL3ICM/hnVhIOQY2fwnSWtST33OlgxVA==
 
+react-native-firebase@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-firebase/-/react-native-firebase-5.0.0.tgz#8cdc24e5f705146f5d031ca319f9310e0b4ce5f4"
+  integrity sha512-plj16TKMJBEa+Pk48R+xKhgH9Kp1YtRVLTb+pJE2z5lqNNGkt5fvMlZ7ui5NvUGcnFr4Yt7U9X7volFOos2eaQ==
+  dependencies:
+    opencollective-postinstall "^2.0.0"
+    prop-types "^15.6.2"
+
 react-native-snap-carousel@^3.7.5:
   version "3.7.5"
   resolved "https://registry.yarnpkg.com/react-native-snap-carousel/-/react-native-snap-carousel-3.7.5.tgz#7172456d40ab9161523055eb302f9b03b244240a"
@@ -4912,34 +4817,10 @@ react-native-snap-carousel@^3.7.5:
     prop-types "^15.6.1"
     react-addons-shallow-compare "15.6.2"
 
-<<<<<<< Updated upstream
-react-native-svg@6.2.2:
-  version "6.2.2"
-  resolved "https://registry.yarnpkg.com/react-native-svg/-/react-native-svg-6.2.2.tgz#5803cddce374a542b4468c38a2474fca32080685"
-  integrity sha512-t6wKX6HejI77K7MCMIvtmcX6vAv93WIcg8ff6kPr4HRpqgzgtuCVatkueplG2lLb1+YVhzAdhPTrpXAphIG/EA==
-  dependencies:
-    color "^2.0.1"
-    lodash "^4.16.6"
-    pegjs "^0.10.0"
-
-react-native-vector-icons@4.5.0:
-  version "4.5.0"
-  resolved "https://registry.yarnpkg.com/react-native-vector-icons/-/react-native-vector-icons-4.5.0.tgz#6b95619e64f62f05f579f74a01fe5640df95158b"
-  integrity sha512-A2HdvmYxAohZ3w8FgdMi5kl3pUEXOz9sR3zsfpejIdispqAh6NRAHCqsI6DMRcymNgwWzmqLowPqp9eg5zqWLA==
-  dependencies:
-    lodash "^4.0.0"
-    prop-types "^15.5.10"
-    yargs "^8.0.2"
-
-"react-native@https://github.com/expo/react-native/archive/sdk-30.0.0.tar.gz":
-  version "0.55.4"
-  resolved "https://github.com/expo/react-native/archive/sdk-30.0.0.tar.gz#17d148956ad91ab745fdca830ac3d193564fce5c"
-=======
 react-native@0.57.3:
   version "0.57.3"
   resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.57.3.tgz#ba395bc139f13430caa41614ac6197f8446e106e"
   integrity sha512-FmJQdGjo0rEfEYbw+dhMPn2P/vDpvPebAwL3YDaQ/iYSi+IGPNHdepEaDpU1vfFOAnxrh3BlfACC+RsoeQ3SWw==
->>>>>>> Stashed changes
   dependencies:
     "@babel/runtime" "^7.0.0"
     absolute-path "^0.0.0"
