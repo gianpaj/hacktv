@@ -58,3 +58,6 @@ buck-out/
 # firebase Google analytics
 ios/walnut/GoogleService-Info.plist
 android/app/google-services.json
+
+# ignore passwords for Android keyfile/alias
+android/gradle.properties
