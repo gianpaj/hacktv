@@ -102,7 +102,7 @@ export default class Channel extends Component {
             styles.channelText,
             {
               opacity: this.state.fadeAnim,
-              backgroundColor: item.bgColor || "red",
+              // backgroundColor: item.bgColor || "red",
               color: item.textColor || "white"
             }
           ]}
