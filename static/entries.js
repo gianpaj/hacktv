@@ -20,7 +20,7 @@ export const channels = [
   {
     title: "how to",
     subreddit:
-      "howto;maker;maker;upcycling;DIY;fixit;TechDIY;reuseit;creativegardening;easyfix;woodworking;FastWorkers;lifehacks",
+      "maker;howto;TechDIY;upcycling;DIY;easyfix;woodworking;FastWorkers;lifehacks",
     textColor: "",
     bgColor: "#1f373d"
   },
@@ -34,14 +34,13 @@ export const channels = [
     title: "food",
     // cookingvideos?
     subreddit:
-      "food;food2;vegan;juicing;foodhacks;beekeeping;homebrewing;GuerrillaGardening;Gardening;veganrecipes;FoodVideos",
+      "veganrecipes;FoodVideos;foodhacks;vegan;juicing;foodhacks;beekeeping;homebrewing;GuerrillaGardening;Gardening",
     textColor: "",
     bgColor: "#269108"
   },
   {
     title: "health",
-    subreddit:
-      "health;ZenHabits;meditation;flexibility;WorldStreetWorkout;yoga;productivity",
+    subreddit: "yoga;flexibility;WorldStreetWorkout;meditation",
     textColor: "",
     bgColor: "#ff4238"
   },
