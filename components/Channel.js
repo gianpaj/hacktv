@@ -16,7 +16,7 @@ const redditVideoService = require("../utils/redditVideoService.js");
 export default class Channel extends Component {
   child;
   state = {
-    loading: true,
+    isLoading: true,
     fadeAnim: new Animated.Value(1), // Initial value for opacity: 1
     videos: []
   };
@@ -28,7 +28,7 @@ export default class Channel extends Component {
 
     if (__DEV__) console.log({ title: item.title, videos });
 
-    this.setState({ videos, loading: false });
+    this.setState({ videos, isLoading: false });
   }
 
   renderCell = ({ item }) => (
@@ -64,9 +64,9 @@ export default class Channel extends Component {
 
   render() {
     const { item } = this.props.item;
-    const { videos, loading } = this.state;
+    const { videos, isLoading } = this.state;
 
-    if (loading)
+    if (isLoading)
       return (
         <ActivityIndicator
           size="large"

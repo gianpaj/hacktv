@@ -19,5 +19,6 @@ target 'walnut' do
 
   # Required by RNFirebase
   pod 'Firebase/Core', '~> 5.9.0'
+  pod 'Firebase/RemoteConfig', '~> 5.9.0'
 end
 
