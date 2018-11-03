@@ -92,12 +92,45 @@ module.exports = function RedditVideoService() {
 
           result(videos);
         },
-        function(err) {
-          reject(err);
-          // err contains the error from Reddit
-        }
+        // err contains the error from Reddit
+        err => reject(err)
       );
     });
+  }
+
+  /**
+   * e.g.
+   * arrayOfArrays =
+   * [[1,2,3], [4,5,6,7,8], [9,10]]
+   *
+   * return
+   *  [1, 4, 9, 2, 5, 10, 3, 6, 7, 8]
+
+   */
+  function getOneVideoOfEachChannel(arrayOfArrays) {
+    // find the smallest amount of videos for every channel
+    const leastAmountOfVids = Math.min.apply(
+      null,
+      arrayOfArrays.map(arr => arr.length)
+    );
+
+    if (arrayOfArrays.length == 1) return arrayOfArrays;
+
+    let videos = [];
+    // get one video of each channel in rotation
+    for (let i = 0; i < leastAmountOfVids; i++) {
+      for (let j = 0; j < arrayOfArrays.length; j++) {
+        const vid = arrayOfArrays[j][i];
+        videos.push(vid);
+      }
+    }
+    // get the rest of videos
+    for (let k = 0; k < arrayOfArrays.length; k++) {
+      const vid = arrayOfArrays[k].slice(leastAmountOfVids);
+      videos.push(...vid);
+    }
+
+    return videos;
   }
 
   /**
@@ -113,7 +146,16 @@ module.exports = function RedditVideoService() {
     const promises = channel_s.map(channel => _loadHot(channel));
 
     const arrayOfArrayOfVideos = await Promise.all(promises);
-    return [].concat.apply([], arrayOfArrayOfVideos);
+
+    let videos = getOneVideoOfEachChannel(arrayOfArrayOfVideos); // deepscan-disable-line UNUSED_VAR_ASSIGN
+
+    const uniq = {};
+    // remove duplicate videos
+    videos = arrayOfArrayOfVideos.filter(
+      arr => !uniq[arr.videoUrl] && (uniq[arr.videoUrl] = true)
+    );
+
+    return [].concat.apply([], videos);
     // .sort(dynamicSort("created_utc"));
   }
 
