@@ -30,7 +30,7 @@ export default class example extends Component {
 
     firebase
       .config()
-      .fetch(3600) // 1 hour
+      .fetch(60) // 1 hour
       .then(() => firebase.config().activateFetched())
       .then(activated => {
         if (!activated && __DEV__) console.log("Fetched data not activated");

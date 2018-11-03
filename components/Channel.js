@@ -24,7 +24,8 @@ export default class Channel extends Component {
   async componentDidMount() {
     const { item } = this.props.item;
     const videos = await redditVideoService().loadHot(item.subreddit);
-    // console.warn(videos.map(v => v.type));
+    // console.warn(item.subreddit);
+    // console.warn(videos.map(v => v.title));
 
     if (__DEV__) console.log({ title: item.title, videos });
 

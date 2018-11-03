@@ -114,7 +114,10 @@ module.exports = function RedditVideoService() {
       arrayOfArrays.map(arr => arr.length)
     );
 
-    if (arrayOfArrays.length == 1) return arrayOfArrays;
+    if (arrayOfArrays.length == 1) {
+      console.warn("skipping", arrayOfArrays[0]);
+      return arrayOfArrays;
+    }
 
     let videos = [];
     // get one video of each channel in rotation
@@ -147,11 +150,11 @@ module.exports = function RedditVideoService() {
 
     const arrayOfArrayOfVideos = await Promise.all(promises);
 
-    let videos = getOneVideoOfEachChannel(arrayOfArrayOfVideos); // deepscan-disable-line UNUSED_VAR_ASSIGN
+    let videos = getOneVideoOfEachChannel(arrayOfArrayOfVideos);
 
     const uniq = {};
     // remove duplicate videos
-    videos = arrayOfArrayOfVideos.filter(
+    videos = videos.filter(
       arr => !uniq[arr.videoUrl] && (uniq[arr.videoUrl] = true)
     );
 
