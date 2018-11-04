@@ -21,6 +21,10 @@ module.exports = function RedditVideoService() {
     return false;
   }
 
+  function filterByUpvotes(video, upsMin) {
+    return video.data.ups >= upsMin;
+  }
+
   function childObjectToDomainVideoModel({ data }) {
     const result = {};
     result.title = data.title;
@@ -28,10 +32,10 @@ module.exports = function RedditVideoService() {
     result.redditLink = "https://www.reddit.com" + data.permalink;
     result.created_utc = data.created_utc;
 
-    if (data.preview && data.preview.images) {
-      const images = data.preview.images[0].resolutions;
-      result.posterSource = images[images.length - 1].url;
-    }
+    // if (data.preview && data.preview.images) {
+    //   const images = data.preview.images[0].resolutions;
+    //   result.posterSource = images[images.length - 1].url;
+    // }
 
     // reddit video
     if (data.is_video) {
@@ -81,7 +85,7 @@ module.exports = function RedditVideoService() {
     };
   }
 
-  function _loadHot(channel, after) {
+  function _loadHot(channel, upsMin, after) {
     return new Promise((result, reject) => {
       if (typeof channel !== "string") {
         return reject(
@@ -93,8 +97,13 @@ module.exports = function RedditVideoService() {
 
       query.fetch(
         res => {
-          const videos = res.data.children
-            .filter(isVideoObject)
+          let videos = res.data.children.filter(isVideoObject);
+
+          if (upsMin) {
+            videos = videos.filter(vid => filterByUpvotes(vid, upsMin));
+          }
+
+          videos = videos
             .map(childObjectToDomainVideoModel)
             .filter(v => v.type === "youtube");
 
@@ -124,7 +133,7 @@ module.exports = function RedditVideoService() {
     );
 
     if (arrayOfArrays.length === 1) {
-      if (__DEV__) console.warn("skipping", arrayOfArrays[0]);
+      // if (__DEV__) console.warn("skipping", arrayOfArrays[0]);
       return arrayOfArrays;
     }
 
@@ -149,13 +158,14 @@ module.exports = function RedditVideoService() {
    * Get videos from subreddit(s)
    *
    * @param {string} channel_s one or more channels - e.g. 'funny' or' 'funny;cool'
+   * @param {number} upsMin minimum amount of up votes per video
    * @param {*} after reddit id to load more videos
    */
-  async function loadHot(channel_s, after) {
+  async function loadHot(channel_s, upsMin, after) {
     // TODO: implement "after" for multiple channels
     channel_s = channel_s.split(";");
     // console.warn("fetching", channel_s.length, "channels");
-    const promises = channel_s.map(channel => _loadHot(channel));
+    const promises = channel_s.map(channel => _loadHot(channel, upsMin));
 
     const arrayOfArrayOfVideos = await Promise.all(promises);
 

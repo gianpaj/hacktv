@@ -25,6 +25,8 @@ export default class example extends Component {
   componentDidMount() {
     if (__DEV__) firebase.config().enableDeveloperMode();
 
+    // return this.setState({ isLoading: false, channels });
+
     // Set default values
     firebase.config().setDefaults({ channels: JSON.stringify(channels) });
 

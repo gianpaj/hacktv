@@ -23,7 +23,11 @@ export default class Channel extends Component {
 
   async componentDidMount() {
     const { item } = this.props.item;
-    const videos = await redditVideoService().loadHot(item.subreddit);
+
+    const videos = await redditVideoService().loadHot(
+      item.subreddit,
+      item.minNumOfVotes
+    );
     // console.warn(item.subreddit);
     // console.warn(videos.map(v => v.title));
 
