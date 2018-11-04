@@ -1,11 +1,14 @@
 require("reddit.js");
 
+const youtubeURL = "http://www.youtube.com/watch?v=";
+const youtubeURLLength = youtubeURL.length;
+const embedLength = "/embed/".length;
+
 module.exports = function RedditVideoService() {
   function isVideoObject({ data }) {
     // reddit videos
-    if (data.is_video === true) {
-      return true;
-    }
+    if (data.is_video === true) return true;
+
     // debug only - return only reddit videos
     // return false;
 
@@ -43,12 +46,17 @@ module.exports = function RedditVideoService() {
 
     // youtube video
     if (data.media.type === "youtube.com") {
-      var startIndex =
-        data.media.oembed.html.indexOf("/embed/") + "/embed/".length;
-      var endIndex = data.media.oembed.html.indexOf("?feature=oembed");
-
-      result.videoUrl = data.media.oembed.html.substring(startIndex, endIndex);
+      const { oembed } = data.media;
       result.type = "youtube";
+
+      if (oembed.url && oembed.url.indexOf(youtubeURL) === 0) {
+        return (result.videoUrl = oembed.html.substring(youtubeURLLength));
+      } else {
+        const { html } = oembed;
+        const startIndex = html.indexOf("/embed/") + embedLength;
+        const endIndex = html.indexOf("?");
+        result.videoUrl = html.substring(startIndex, endIndex);
+      }
     }
 
     // vimeo video
@@ -104,8 +112,9 @@ module.exports = function RedditVideoService() {
    * [[1,2,3], [4,5,6,7,8], [9,10]]
    *
    * return
-   *  [1, 4, 9, 2, 5, 10, 3, 6, 7, 8]
-
+   * [1, 4, 9, 2, 5, 10, 3, 6, 7, 8]
+   *
+   * TODO: if we skipped the video of a channel the 2nd video
    */
   function getOneVideoOfEachChannel(arrayOfArrays) {
     // find the smallest amount of videos for every channel
@@ -114,8 +123,8 @@ module.exports = function RedditVideoService() {
       arrayOfArrays.map(arr => arr.length)
     );
 
-    if (arrayOfArrays.length == 1) {
-      console.warn("skipping", arrayOfArrays[0]);
+    if (arrayOfArrays.length === 1) {
+      if (__DEV__) console.warn("skipping", arrayOfArrays[0]);
       return arrayOfArrays;
     }
 

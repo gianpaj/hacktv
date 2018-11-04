@@ -27,6 +27,10 @@ export default class Channel extends Component {
     // console.warn(item.subreddit);
     // console.warn(videos.map(v => v.title));
 
+    // if (item.title == "general") {
+    //   console.log(videos.map(v => ({ title: v.title, videoUrl: v.videoUrl })));
+    // }
+
     if (__DEV__) console.log({ title: item.title, videos });
 
     this.setState({ videos, isLoading: false });
