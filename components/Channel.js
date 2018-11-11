@@ -14,6 +14,7 @@ import styles, { colors } from "../styles/index.style";
 const redditVideoService = require("../utils/redditVideoService.js");
 
 export default class Channel extends Component {
+  _carousel;
   child;
   state = {
     isLoading: true,
@@ -40,11 +41,14 @@ export default class Channel extends Component {
     this.setState({ videos, isLoading: false });
   }
 
+  onNext = () => this._carousel.snapToNext();
+
   renderCell = ({ item }) => (
     <SliderEntry
       ref={instance => (this.child = instance)}
       onPause={this.onPause}
       onPlay={this.onPlay}
+      onNext={this.onNext}
       data={item}
     />
   );
@@ -88,6 +92,7 @@ export default class Channel extends Component {
       <View>
         {/* <Text style={styles.channelText}>{item.title}</Text> */}
         <Carousel
+          ref={c => (this._carousel = c)}
           containerCustomStyle={styles.slider}
           contentContainerCustomStyle={styles.sliderContentContainer}
           data={videos}
@@ -98,7 +103,7 @@ export default class Channel extends Component {
           sliderHeight={slideHeight}
           sliderWidth={sliderWidth}
           // useScrollView
-          onSnapToItem={this.onVideoOnScreen}
+          // onSnapToItem={this.onVideoOnScreen}
           vertical
           shouldOptimizeUpdates
           removeclippedsubviews

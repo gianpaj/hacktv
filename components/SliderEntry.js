@@ -34,7 +34,7 @@ export default class SliderEntry extends PureComponent {
 
   componentWillUnmount() {
     // AppState.removeEventListener("change", this._handleAppStateChange);
-    this.videoRef && this.videoRef.pauseAsync();
+    // this.videoRef && this.videoRef.pauseAsync();
   }
 
   onPlay = () => {
