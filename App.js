@@ -77,7 +77,14 @@ export default class example extends Component {
             enableSnap
             itemHeight={itemHeight}
             itemWidth={itemWidth}
-            renderItem={channel => <Channel item={channel} />}
+            renderItem={channel => (
+              <Channel
+                item={channel}
+                isFirstChannel={
+                  channel.item.title == this.state.channels[0].title
+                }
+              />
+            )}
             onSnapToItem={this.onChannelSnap}
             sliderHeight={slideHeight}
             sliderWidth={sliderWidth}

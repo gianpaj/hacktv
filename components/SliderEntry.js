@@ -1,26 +1,38 @@
-import React, { PureComponent } from "react";
+import React, { Component } from "react";
 import {
   Animated,
+  Dimensions,
   // AppState,
   Text,
   TouchableOpacity,
   View,
   WebView
 } from "react-native";
-// import { Video } from "expo";
 import PropTypes from "prop-types";
-// import { ParallaxImage } from "react-native-snap-carousel";
 
 import styles from "../styles/SliderEntry.style";
 
-export default class SliderEntry extends PureComponent {
+const { width, height } = Dimensions.get("window");
+
+function JStoInjectPlay() {
+  // alert("injected");
+  const state = player.getPlayerState();
+  // paused || unstarted || ended || cued
+  if (state == 2 || state == -1 || state == 0 || state == 5) {
+    player.playVideo();
+    // playing
+  } else if (state == 1) {
+    player.pauseVideo();
+  }
+}
+
+export default class SliderEntry extends Component {
   videoRef;
 
   state = {
     // appState: AppState.currentState,
-    finished: false,
     fadeAnim: new Animated.Value(1), // Initial value for opacity: 1
-    loading: true
+    playerStatus: -2
   };
 
   static propTypes = {
@@ -32,37 +44,51 @@ export default class SliderEntry extends PureComponent {
     // AppState.addEventListener("change", this._handleAppStateChange);
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    if (nextState.fadeAnim !== this.state.fadeAnim) {
+      return { fadeAnim: nextState.fadeAnim };
+    }
+    return false;
+  }
+
   componentWillUnmount() {
     // AppState.removeEventListener("change", this._handleAppStateChange);
     // this.videoRef && this.videoRef.pauseAsync();
   }
 
   onPlay = () => {
-    // FIXME: only for non-youtube videos
-    this.videoRef && this.videoRef.playAsync();
-    if (!this.state.loading) {
-      this.setState({ fadeAnim: new Animated.Value(1) }, () =>
-        Animated.timing(this.state.fadeAnim, {
-          toValue: 0,
-          duration: 1000
-        }).start()
-      );
+    this.playVideo();
+
+    // playing
+    if (this.state.state == 1) {
+      this.fadeOut();
       this.props.onPlay();
-    }
-    if (this.state.finished) {
-      this.videoRef.playFromPositionAsync(0);
     }
   };
 
-  onPause = () => {
-    // FIXME: only for non-youtube videos
-    this.videoRef && this.videoRef.pauseAsync();
+  // TODO: introduce delay for the first time the video starts playing
+  fadeOut = (delay = 0) => {
+    this.setState({ fadeAnim: new Animated.Value(1) }, () =>
+      Animated.timing(this.state.fadeAnim, {
+        delay,
+        toValue: 0,
+        duration: 1000
+      }).start()
+    );
+  };
+
+  fadeIn = () => {
     this.setState({ fadeAnim: new Animated.Value(0) }, () =>
       Animated.timing(this.state.fadeAnim, {
         toValue: 1,
         duration: 1000
       }).start()
     );
+  };
+
+  onPause = () => {
+    this.pauseVideo();
+    this.fadeOut();
     this.props.onPause();
   };
 
@@ -70,97 +96,102 @@ export default class SliderEntry extends PureComponent {
   //   this.setState({ appState: nextAppState });
   // };
 
-  renderVideo = item => {
-    // const {
-    //   data: { illustration },
-    //   parallax
-    // } = this.props;
+  onMessage(data) {
+    data = JSON.parse(data);
+    this.setState({ playerStatus: data });
+    // ended
+    if (data == 0) {
+      this.props.onNext();
+    }
+    // playing
+    if (data == 1) {
+      this.fadeOut();
+      this.props.onPlay();
+    }
+    // paused
+    if (data == 2) {
+      this.fadeIn();
+    }
+  }
 
-    if (item.type !== "youtube") return null;
+  renderVideo = item => {
     return (
       <WebView
-        style={{ flex: 1 }}
-        javaScriptEnabled={true}
+        ref={webview => (this.videoRef = webview)}
+        style={{ flex: 1, borderWidth: 1, borderColor: "red" }}
+        onMessage={event => this.onMessage(event.nativeEvent.data)}
+        mediaPlaybackRequiresUserAction={false}
         source={{
-          uri: `https://www.youtube.com/embed/${
-            item.videoUrl
-          }?rel=0&autoplay=1&controls=1`
+          html: `<html>
+            <head><meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0"></head>
+            <body style="border: 0; width: 100%; margin: 0">
+              <iframe id="existing-iframe-example"
+                width="100%" height="${height}"
+                allow="autoplay; fullscreen"
+                src="https://www.youtube.com/embed/${
+                  item.videoUrl
+                  // "B7bqAsxee4I"
+                }?enablejsapi=1&rel=0&autoplay=1&controls=1"
+                frameborder="0"></iframe>
+              <script>
+              // 2. This code loads the IFrame Player API code asynchronously.
+              var tag = document.createElement('script');
+
+              tag.src = "https://www.youtube.com/iframe_api";
+              var firstScriptTag = document.getElementsByTagName('script')[0];
+              firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+              // 3. This function creates an <iframe> (and YouTube player)
+              //    after the API code downloads.
+              var player;
+              var done = false;
+              function onYouTubeIframeAPIReady() {
+                player = new YT.Player('existing-iframe-example', {
+                  events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                  }
+                });
+              }
+
+
+              // 4. The API will call this function when the video player is ready.
+              function onPlayerReady(event) {
+                document.getElementById('existing-iframe-example').style.borderColor = '#FF6D00';
+                done = false;
+                if (${this.props.isFirstChannel && this.props.isFirstVideo})
+                event.target.playVideo();
+              }
+
+              // 5. The API calls this function when the player's state changes.
+              //    The function indicates that when playing a video (state=1),
+              //    the player should play for six seconds and then stop.
+
+              function onPlayerStateChange(event) {
+                //changeBorderColor(event.data);
+                //if (event.data == YT.PlayerState.PLAYING && !done) {
+                  window.postMessage(event.data);
+                  //done = true;
+                //}
+              }
+            </script>
+            </body></html>`
         }}
+        scrollEnabled={false} // ios
+        allowsInlineMediaPlayback // ios
+        // useWebKit // ios
       />
     );
-    /*
-    return (
-      <Video
-        ref={r => (this.videoRef = r)}
-        source={{ uri: item.videoUrl }}
-        rate={1.0}
-        volume={1.0}
-        isMuted={false}
-        resizeMode="cover"
-        shouldPlay={true}
-        isLooping={false}
-        style={{ flex: 1 }}
-        // usePoster={item.posterSource ? true : false}
-        // posterSource={{ uri: item.posterSource } || null}
-        onLoadStart={() => this.setState({ loading: true })}
-        onLoad={() => this.setState({ loading: false })}
-        onPlaybackStatusUpdate={playbackStatus => {
-          if (playbackStatus.isPlaying && this.state.loading) {
-            this.setState({ loading: false }, () => {
-              // FIXME: to fade in
-              this.onPlay();
-            });
-          }
-
-          if (playbackStatus.isBuffering) {
-            // Update your UI for the buffering state
-            // console.warn(playbackStatus);
-          }
-
-          // The player has just finished playing and will stop. Maybe you want to play something else?
-          if (playbackStatus.didJustFinish && !playbackStatus.isLooping) {
-            console.warn("didJustFinish");
-            this.setState({ finished: true });
-          }
-        }}
-        onError={() => {
-          this.onPause();
-          this.setState({ loading: false });
-        }}
-        // useNativeControls
-      />
-    );
-    */
   };
-
-  onShareBtnClick(videoUrl) {
-    Share.share(
-      {
-        message: "",
-        url: videoUrl,
-        title: "Wow, did you see that?"
-      },
-      {
-        // Android only:
-        dialogTitle: "Share one more amazing video",
-        // iOS only:
-        excludedActivityTypes: []
-      }
-    );
-  }
 
   renderDescription() {
     const { data } = this.props;
 
     return (
       <Animated.View
-        style={[
-          styles.textContainer,
-          { opacity: this.state.fadeAnim },
-          data.subtitle ? { paddingBottom: 20 } : { paddingBottom: 10 }
-        ]}
+        style={[styles.textContainer, { opacity: this.state.fadeAnim }]}
       >
-        <Text style={styles.title} numberOfLines={2}>
+        <Text style={styles.title} numberOfLines={1}>
           {data.title}
         </Text>
         {/* {data.subtitle && (
@@ -172,14 +203,22 @@ export default class SliderEntry extends PureComponent {
     );
   }
 
+  playVideo = () => {
+    this.videoRef.injectJavaScript(`player.playVideo()`);
+  };
+
+  pauseVideo = () => {
+    this.videoRef.injectJavaScript(`player.pauseVideo()`);
+  };
+
   render() {
     const { data } = this.props;
 
     if (data.type == "youtube") {
       return (
         <View style={styles.slideInnerContainer}>
-          <View style={styles.videoContainer}>{this.renderVideo(data)}</View>
-          {/* {this.renderDescription()} */}
+          {this.renderDescription()}
+          {this.renderVideo(data)}
         </View>
       );
     }

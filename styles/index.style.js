@@ -16,7 +16,7 @@ export default StyleSheet.create({
   channelIcon: {
     top: 30,
     position: "absolute",
-    left: 10,
+    right: 10,
     zIndex: 10,
     resizeMode: "contain",
     width: 30,
@@ -27,10 +27,8 @@ export default StyleSheet.create({
     bottom: 15,
     fontWeight: "bold",
     borderRadius: 5,
-    // borderWidth: 1,
-    // borderColor: light,
     position: "absolute",
-    left: 10,
+    right: 10,
     paddingHorizontal: 10,
     paddingVertical: 5,
     fontSize: 18

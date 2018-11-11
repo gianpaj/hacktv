@@ -10,16 +10,25 @@ import {
   itemHeight
 } from "../styles/SliderEntry.style";
 import styles, { colors } from "../styles/index.style";
+import PropTypes from "prop-types";
 
 const redditVideoService = require("../utils/redditVideoService.js");
 
 export default class Channel extends Component {
   _carousel;
-  child;
+  children = {};
   state = {
     isLoading: true,
     fadeAnim: new Animated.Value(1), // Initial value for opacity: 1
-    videos: []
+    videos: [],
+    prevVideo: null,
+    currentVideo: null
+  };
+
+  static propTypes = {
+    item: PropTypes.object.isRequired,
+    isFirstChannel: PropTypes.bool.isRequired
+    // parallax: PropTypes.bool
   };
 
   async componentDidMount() {
@@ -38,23 +47,42 @@ export default class Channel extends Component {
 
     if (__DEV__) console.log({ title: item.title, videos });
 
-    this.setState({ videos, isLoading: false });
+    const firstVideo = videos[0].videoUrl;
+
+    this.setState({
+      videos,
+      isLoading: false,
+      currentVideo: firstVideo
+    });
   }
 
   onNext = () => this._carousel.snapToNext();
 
-  renderCell = ({ item }) => (
-    <SliderEntry
-      ref={instance => (this.child = instance)}
-      onPause={this.onPause}
-      onPlay={this.onPlay}
-      onNext={this.onNext}
-      data={item}
-    />
-  );
+  renderCell = ({ item }) => {
+    const { videos } = this.state;
 
-  onVideoOnScreen = () => {
-    this.child && this.child.onPlay();
+    return (
+      <SliderEntry
+        ref={instance => (this.children[item.videoUrl] = instance)}
+        onPause={this.onPause}
+        onPlay={this.onPlay}
+        onNext={this.onNext}
+        data={item}
+        isFirstVideo={item.videoUrl == videos[0].videoUrl}
+        isFirstChannel={this.props.isFirstChannel}
+      />
+    );
+  };
+
+  onVideoOnScreen = i => {
+    const currentVideo = this.state.videos[i].videoUrl;
+
+    this.setState(prevState => {
+      const prevVideo = prevState.currentVideo;
+      this.children[prevVideo] && this.children[prevVideo].onPause();
+      this.children[currentVideo] && this.children[currentVideo].onPlay();
+      return { prevVideo, currentVideo };
+    });
   };
 
   onPlay = () => {
@@ -103,7 +131,7 @@ export default class Channel extends Component {
           sliderHeight={slideHeight}
           sliderWidth={sliderWidth}
           // useScrollView
-          // onSnapToItem={this.onVideoOnScreen}
+          onSnapToItem={this.onVideoOnScreen}
           vertical
           shouldOptimizeUpdates
           removeclippedsubviews

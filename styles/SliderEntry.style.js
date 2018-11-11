@@ -20,8 +20,6 @@ export const sliderWidth = viewportWidth;
 export const itemWidth = slideWidth + itemHorizontalMargin * 2;
 export const itemHeight = slideHeight + itemVerticalMargin * 2;
 
-const entryBorderRadius = 8;
-
 export default StyleSheet.create({
   shareButtonContainer: {
     width: 30,
@@ -49,11 +47,12 @@ export default StyleSheet.create({
     // backgroundColor: "blue"
   },
   textContainer: {
-    backgroundColor: "rgba(0, 0, 0, .3)",
-    bottom: 0,
-    flex: 1,
-    height: 50,
+    backgroundColor: "rgba(0, 0, 0, .8)",
+    top: 0,
+    height: 60,
     // justifyContent: "center",
+    flexDirection: "column",
+    justifyContent: "center",
     position: "absolute",
     width: "100%",
     zIndex: 10
@@ -62,7 +61,7 @@ export default StyleSheet.create({
     // borderWidth: 1,
     // borderColor: "white",
     color: "rgba(255, 255, 255, .9)",
-    fontSize: 19,
+    fontSize: 17,
     fontWeight: "bold",
     // fontFamily: "OpenSans",
     padding: 10,
