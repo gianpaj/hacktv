@@ -7,7 +7,9 @@ import {
   sliderWidth,
   slideHeight,
   itemWidth,
-  itemHeight
+  itemHeight,
+  fadeDuration,
+  fadeDelay
 } from "../styles/SliderEntry.style";
 import styles, { colors } from "../styles/index.style";
 import PropTypes from "prop-types";
@@ -98,8 +100,9 @@ export default class Channel extends Component {
   onPlay = () => {
     this.setState({ fadeAnim: new Animated.Value(1) }, () =>
       Animated.timing(this.state.fadeAnim, {
+        delay: fadeDelay,
         toValue: 0,
-        duration: 2000
+        duration: fadeDuration
       }).start()
     );
   };
@@ -108,7 +111,7 @@ export default class Channel extends Component {
     this.setState({ fadeAnim: new Animated.Value(0) }, () =>
       Animated.timing(this.state.fadeAnim, {
         toValue: 1,
-        duration: 2000
+        duration: fadeDuration
       }).start()
     );
   };

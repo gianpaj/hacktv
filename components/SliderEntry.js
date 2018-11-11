@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import PropTypes from "prop-types";
 
-import styles from "../styles/SliderEntry.style";
+import styles, { fadeDuration, fadeDelay } from "../styles/SliderEntry.style";
 
 const { height } = Dimensions.get("window");
 
@@ -59,12 +59,12 @@ export default class SliderEntry extends Component {
   };
 
   // TODO: introduce delay for the first time the video starts playing
-  fadeOut = (delay = 0) => {
+  fadeOut = () => {
     this.setState({ fadeAnim: new Animated.Value(1) }, () =>
       Animated.timing(this.state.fadeAnim, {
-        delay,
+        delay: fadeDelay,
         toValue: 0,
-        duration: 1000
+        duration: fadeDuration
       }).start()
     );
   };
@@ -73,7 +73,7 @@ export default class SliderEntry extends Component {
     this.setState({ fadeAnim: new Animated.Value(0) }, () =>
       Animated.timing(this.state.fadeAnim, {
         toValue: 1,
-        duration: 1000
+        duration: fadeDuration
       }).start()
     );
   };
