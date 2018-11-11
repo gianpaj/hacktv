@@ -74,6 +74,16 @@ export default class Channel extends Component {
     );
   };
 
+  pauseCurrentVideo = () => {
+    const { currentVideo } = this.state;
+    this.children[currentVideo] && this.children[currentVideo].onPause();
+  };
+
+  playCurrentVideo = () => {
+    const { currentVideo } = this.state;
+    this.children[currentVideo] && this.children[currentVideo].onPlay();
+  };
+
   onVideoOnScreen = i => {
     const currentVideo = this.state.videos[i].videoUrl;
 

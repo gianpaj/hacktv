@@ -20,7 +20,8 @@ import { channels } from "./static/entries";
 // import { Share } from 'react-native';
 
 export default class example extends Component {
-  state = { isLoading: true, channels: null };
+  channelRefs = {};
+  state = { isLoading: true, channels: null, currentChannel: null };
 
   componentDidMount() {
     if (__DEV__) firebase.config().enableDeveloperMode();
@@ -46,14 +47,22 @@ export default class example extends Component {
         if (!__DEV__) firebase.analytics().setCurrentScreen(channels[0].title);
         // console.warn("setCurrentScreen: " + channels[0].title);
 
-        this.setState({ isLoading: false, channels });
+        this.setState({
+          isLoading: false,
+          channels,
+          currentChannel: channels[0].title
+        });
       })
       .catch(console.error);
   }
 
   onChannelSnap = i => {
-    if (!__DEV__) firebase.analytics().setCurrentScreen(channels[i].title);
+    const newChannel = this.state.channels[i].title;
+    if (!__DEV__) firebase.analytics().setCurrentScreen(newChannel);
     // console.warn(channels[i].title);
+    this.channelRefs[this.state.currentChannel].pauseCurrentVideo();
+    this.setState({ currentChannel: newChannel });
+    this.channelRefs[newChannel].playCurrentVideo();
   };
 
   render() {
@@ -79,6 +88,9 @@ export default class example extends Component {
             itemWidth={itemWidth}
             renderItem={channel => (
               <Channel
+                ref={instance =>
+                  (this.channelRefs[channel.item.title] = instance)
+                }
                 item={channel}
                 isFirstChannel={
                   channel.item.title == this.state.channels[0].title
