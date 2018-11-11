@@ -110,7 +110,7 @@ export default class SliderEntry extends Component {
     return (
       <WebView
         ref={webview => (this.videoRef = webview)}
-        style={{ flex: 1, borderWidth: 1, borderColor: "red" }}
+        style={{ flex: 1 }}
         onMessage={event => this.onMessage(event.nativeEvent.data)}
         mediaPlaybackRequiresUserAction={false}
         source={{

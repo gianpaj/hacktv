@@ -50,7 +50,7 @@ export default StyleSheet.create({
     // backgroundColor: "blue"
   },
   textContainer: {
-    backgroundColor: "rgba(0, 0, 0, .8)",
+    backgroundColor: "rgb(0, 0, 0)",
     top: 0,
     height: 60,
     // justifyContent: "center",
