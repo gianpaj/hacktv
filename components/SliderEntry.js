@@ -12,19 +12,7 @@ import PropTypes from "prop-types";
 
 import styles from "../styles/SliderEntry.style";
 
-const { width, height } = Dimensions.get("window");
-
-function JStoInjectPlay() {
-  // alert("injected");
-  const state = player.getPlayerState();
-  // paused || unstarted || ended || cued
-  if (state == 2 || state == -1 || state == 0 || state == 5) {
-    player.playVideo();
-    // playing
-  } else if (state == 1) {
-    player.pauseVideo();
-  }
-}
+const { height } = Dimensions.get("window");
 
 export default class SliderEntry extends Component {
   videoRef;
@@ -36,8 +24,12 @@ export default class SliderEntry extends Component {
   };
 
   static propTypes = {
-    data: PropTypes.object.isRequired
-    // parallax: PropTypes.bool
+    data: PropTypes.object.isRequired,
+    isFirstChannel: PropTypes.bool.isRequired,
+    isFirstVideo: PropTypes.bool.isRequired,
+    onNext: PropTypes.func.isRequired,
+    onPause: PropTypes.func.isRequired,
+    onPlay: PropTypes.func.isRequired
   };
 
   componentDidMount() {
