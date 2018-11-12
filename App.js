@@ -50,7 +50,7 @@ export default class example extends Component {
         this.setState({
           isLoading: false,
           channels,
-          currentChannel: channels[0].title
+          currentChannel: 0
         });
       })
       .catch(console.error);
@@ -61,8 +61,8 @@ export default class example extends Component {
     if (!__DEV__) firebase.analytics().setCurrentScreen(newChannel);
     // console.warn(channels[i].title);
     this.channelRefs[this.state.currentChannel].pauseCurrentVideo();
-    this.setState({ currentChannel: newChannel });
-    this.channelRefs[newChannel].playCurrentVideo();
+    this.setState({ currentChannel: i });
+    this.channelRefs[i].playCurrentVideo();
   };
 
   render() {
