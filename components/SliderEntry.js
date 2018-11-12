@@ -91,18 +91,24 @@ export default class SliderEntry extends Component {
   onMessage(data) {
     data = JSON.parse(data);
     this.setState({ playerStatus: data });
-    // ended
-    if (data == 0) {
-      this.props.onNext();
-    }
-    // playing
-    if (data == 1) {
-      this.fadeOut();
-      this.props.onPlay();
-    }
-    // paused
-    if (data == 2) {
-      this.fadeIn();
+
+    switch (data) {
+      case 0:
+        // ended
+        this.props.onNext();
+        break;
+      case 1:
+        // playing
+        this.fadeOut();
+        this.props.onPlay();
+        break;
+      case 2:
+        // paused
+        this.fadeIn();
+        break;
+
+      default:
+        break;
     }
   }
 
@@ -119,10 +125,9 @@ export default class SliderEntry extends Component {
             <body style="border: 0; width: 100%; margin: 0">
               <iframe id="existing-iframe-example"
                 width="100%" height="${height}"
-                allow="autoplay; fullscreen"
+                allow="autoplay;"
                 src="https://www.youtube.com/embed/${
                   item.videoUrl
-                  // "B7bqAsxee4I"
                 }?enablejsapi=1&rel=0&autoplay=1&controls=1"
                 frameborder="0"></iframe>
               <script>
@@ -136,7 +141,6 @@ export default class SliderEntry extends Component {
               // 3. This function creates an <iframe> (and YouTube player)
               //    after the API code downloads.
               var player;
-              var done = false;
               function onYouTubeIframeAPIReady() {
                 player = new YT.Player('existing-iframe-example', {
                   events: {
@@ -146,25 +150,15 @@ export default class SliderEntry extends Component {
                 });
               }
 
-
               // 4. The API will call this function when the video player is ready.
               function onPlayerReady(event) {
-                document.getElementById('existing-iframe-example').style.borderColor = '#FF6D00';
-                done = false;
                 if (${this.props.isFirstChannel && this.props.isFirstVideo})
-                event.target.playVideo();
+                  event.target.playVideo();
               }
 
               // 5. The API calls this function when the player's state changes.
-              //    The function indicates that when playing a video (state=1),
-              //    the player should play for six seconds and then stop.
-
               function onPlayerStateChange(event) {
-                //changeBorderColor(event.data);
-                //if (event.data == YT.PlayerState.PLAYING && !done) {
-                  window.postMessage(event.data);
-                  //done = true;
-                //}
+                window.postMessage(event.data);
               }
             </script>
             </body></html>`

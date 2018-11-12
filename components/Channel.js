@@ -34,7 +34,7 @@ export default class Channel extends Component {
   };
 
   async componentDidMount() {
-    const { item } = this.props.item;
+    const { item } = this.props;
 
     const videos = await redditVideoService().loadHot(
       item.subreddit,
@@ -49,32 +49,26 @@ export default class Channel extends Component {
 
     if (__DEV__) console.log({ title: item.title, videos });
 
-    const firstVideo = videos[0].videoUrl;
-
     this.setState({
       videos,
       isLoading: false,
-      currentVideo: firstVideo
+      currentVideo: 0
     });
   }
 
   onNext = () => this._carousel.snapToNext();
 
-  renderCell = ({ item }) => {
-    const { videos } = this.state;
-
-    return (
-      <SliderEntry
-        ref={instance => (this.children[item.videoUrl] = instance)}
-        onPause={this.onPause}
-        onPlay={this.onPlay}
-        onNext={this.onNext}
-        data={item}
-        isFirstVideo={item.videoUrl == videos[0].videoUrl}
-        isFirstChannel={this.props.isFirstChannel}
-      />
-    );
-  };
+  renderCell = ({ item, index }) => (
+    <SliderEntry
+      ref={instance => (this.children[index] = instance)}
+      onPause={this.onPause}
+      onPlay={this.onPlay}
+      onNext={this.onNext}
+      data={item}
+      isFirstVideo={index == 0}
+      isFirstChannel={this.props.isFirstChannel}
+    />
+  );
 
   pauseCurrentVideo = () => {
     const { currentVideo } = this.state;
@@ -87,13 +81,11 @@ export default class Channel extends Component {
   };
 
   onVideoOnScreen = i => {
-    const currentVideo = this.state.videos[i].videoUrl;
-
     this.setState(prevState => {
       const prevVideo = prevState.currentVideo;
       this.children[prevVideo] && this.children[prevVideo].onPause();
-      this.children[currentVideo] && this.children[currentVideo].onPlay();
-      return { prevVideo, currentVideo };
+      this.children[i] && this.children[i].onPlay();
+      return { prevVideo, currentVideo: i };
     });
   };
 
@@ -117,7 +109,7 @@ export default class Channel extends Component {
   };
 
   render() {
-    const { item } = this.props.item;
+    const { item } = this.props;
     const { videos, isLoading } = this.state;
 
     if (isLoading)

@@ -86,15 +86,11 @@ export default class example extends Component {
             enableSnap
             itemHeight={itemHeight}
             itemWidth={itemWidth}
-            renderItem={channel => (
+            renderItem={({ item, index }) => (
               <Channel
-                ref={instance =>
-                  (this.channelRefs[channel.item.title] = instance)
-                }
-                item={channel}
-                isFirstChannel={
-                  channel.item.title == this.state.channels[0].title
-                }
+                ref={instance => (this.channelRefs[index] = instance)}
+                item={item}
+                isFirstChannel={index == 0}
               />
             )}
             onSnapToItem={this.onChannelSnap}
