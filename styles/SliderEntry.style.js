@@ -21,7 +21,7 @@ export const itemWidth = slideWidth + itemHorizontalMargin * 2;
 export const itemHeight = slideHeight + itemVerticalMargin * 2;
 
 export const fadeDelay = 3000;
-export const fadeDuration = 1000;
+export const fadeDuration = 0;
 
 export default StyleSheet.create({
   shareButtonContainer: {
