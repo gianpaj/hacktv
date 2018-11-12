@@ -122,7 +122,7 @@ export default class SliderEntry extends Component {
         source={{
           html: `<html>
             <head><meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0"></head>
-            <body style="border: 0; width: 100%; margin: 0">
+            <body style="border: 0; width: 100%; margin: 0; background-color: black">
               <iframe id="existing-iframe-example"
                 width="100%" height="${height}"
                 allow="autoplay;"
