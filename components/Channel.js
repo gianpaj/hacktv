@@ -1,5 +1,12 @@
 import React, { Component } from "react";
-import { ActivityIndicator, Animated, View, Text } from "react-native";
+import {
+  AsyncStorage,
+  ActivityIndicator,
+  Animated,
+  TouchableOpacity,
+  View,
+  Text
+} from "react-native";
 import Carousel from "react-native-snap-carousel";
 
 import SliderEntry from "./SliderEntry";
@@ -16,21 +23,22 @@ import PropTypes from "prop-types";
 
 const redditVideoService = require("../utils/redditVideoService.js");
 
+const MARK_AS_WATCHED_AFTER = 2 * 1000;
+
 export default class Channel extends Component {
   _carousel;
+  timer;
   children = {};
   state = {
-    isLoading: true,
+    currentVideo: null,
     fadeAnim: new Animated.Value(1), // Initial value for opacity: 1
-    videos: [],
-    prevVideo: null,
-    currentVideo: null
+    isLoading: true,
+    videos: []
   };
 
   static propTypes = {
     item: PropTypes.object.isRequired,
     isFirstChannel: PropTypes.bool.isRequired
-    // parallax: PropTypes.bool
   };
 
   async componentDidMount() {
@@ -40,12 +48,16 @@ export default class Channel extends Component {
       item.subreddit,
       item.minNumOfVotes
     );
+    // await AsyncStorage.clear();
+
     // console.warn(item.subreddit);
     // console.warn(videos.map(v => v.title));
 
     // if (item.title == "general") {
     //   console.log(videos.map(v => ({ title: v.title, videoUrl: v.videoUrl })));
     // }
+    // if (watchedArr && watchedArr.length)
+    //   videos = videos.filter(v => watchedArr.indexOf(v.videoUrl) < 0);
 
     if (__DEV__) console.log({ title: item.title, videos });
 
@@ -57,6 +69,9 @@ export default class Channel extends Component {
   }
 
   onNext = () => this._carousel.snapToNext();
+  componentWillUnmount() {
+    clearTimeout(this.timer);
+  }
 
   renderCell = ({ item, index }) => (
     <SliderEntry
@@ -97,8 +112,19 @@ export default class Channel extends Component {
         duration: fadeDuration
       }).start()
     );
+    // this.timer = setTimeout(() => {
+    //   this.markAsWatched();
+    //   // console.warn("watched", title);
+    //   // console.warn("all watched", uniqueArr);
+    // }, MARK_AS_WATCHED_AFTER);
   };
 
+  markAsWatched = async () => {
+    const { videoUrl } = this.state.videos[this.state.currentVideo];
+    const watchedArr = JSON.parse(await AsyncStorage.getItem("watched"));
+    const uniqueArr = Array.from(new Set([...(watchedArr || []), videoUrl]));
+    AsyncStorage.setItem("watched", JSON.stringify(uniqueArr));
+  };
   onPause = () => {
     this.setState({ fadeAnim: new Animated.Value(0) }, () =>
       Animated.timing(this.state.fadeAnim, {
@@ -106,6 +132,8 @@ export default class Channel extends Component {
         duration: fadeDuration
       }).start()
     );
+    // clearTimeout(this.timer);
+  };
   };
 
   render() {
@@ -139,7 +167,6 @@ export default class Channel extends Component {
           onSnapToItem={this.onVideoOnScreen}
           vertical
           shouldOptimizeUpdates
-          removeclippedsubviews
           removeClippedSubviews
           initialNumToRender={2}
           windowSize={2}

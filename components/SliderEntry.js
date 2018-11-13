@@ -80,7 +80,7 @@ export default class SliderEntry extends Component {
 
   onPause = () => {
     this.pauseVideo();
-    this.fadeOut();
+    this.fadeIn();
     this.props.onPause();
   };
 
@@ -89,7 +89,7 @@ export default class SliderEntry extends Component {
   // };
 
   onMessage(data) {
-    data = JSON.parse(data);
+    data = parseInt(data);
     this.setState({ playerStatus: data });
 
     switch (data) {
@@ -105,6 +105,7 @@ export default class SliderEntry extends Component {
       case 2:
         // paused
         this.fadeIn();
+        this.props.onPause();
         break;
 
       default:
