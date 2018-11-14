@@ -146,7 +146,7 @@ export default class SliderEntry extends Component {
                 player = new YT.Player('existing-iframe-example', {
                   events: {
                     'onReady': onPlayerReady,
-                    'onStateChange': onPlayerStateChange
+                    'onStateChange': onPlayerStateChange,
                     'onError': onPlayerError
                   }
                 });
