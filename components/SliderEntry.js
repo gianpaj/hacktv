@@ -147,6 +147,7 @@ export default class SliderEntry extends Component {
                   events: {
                     'onReady': onPlayerReady,
                     'onStateChange': onPlayerStateChange
+                    'onError': onPlayerError
                   }
                 });
               }
@@ -160,6 +161,10 @@ export default class SliderEntry extends Component {
               // 5. The API calls this function when the player's state changes.
               function onPlayerStateChange(event) {
                 window.postMessage(event.data);
+              }
+
+              function onPlayerError() {
+                window.postMessage(0);
               }
             </script>
             </body></html>`
