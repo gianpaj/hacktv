@@ -23,7 +23,7 @@ import PropTypes from "prop-types";
 
 const redditVideoService = require("../utils/redditVideoService.js");
 
-const MARK_AS_WATCHED_AFTER = 2 * 1000;
+const MARK_AS_WATCHED_AFTER = 1 * 1000;
 
 export default class Channel extends Component {
   _carousel;
@@ -112,11 +112,11 @@ export default class Channel extends Component {
         duration: fadeDuration
       }).start()
     );
-    // this.timer = setTimeout(() => {
-    //   this.markAsWatched();
-    //   // console.warn("watched", title);
-    //   // console.warn("all watched", uniqueArr);
-    // }, MARK_AS_WATCHED_AFTER);
+    this.timer = setTimeout(() => {
+      this.markAsWatched();
+      // console.warn("watched", title);
+      // console.warn("all watched", uniqueArr);
+    }, MARK_AS_WATCHED_AFTER);
   };
 
   markAsWatched = async () => {
@@ -125,6 +125,7 @@ export default class Channel extends Component {
     const uniqueArr = Array.from(new Set([...(watchedArr || []), videoUrl]));
     AsyncStorage.setItem("watched", JSON.stringify(uniqueArr));
   };
+
   onPause = () => {
     this.setState({ fadeAnim: new Animated.Value(0) }, () =>
       Animated.timing(this.state.fadeAnim, {
@@ -133,7 +134,6 @@ export default class Channel extends Component {
       }).start()
     );
     // clearTimeout(this.timer);
-  };
   };
 
   render() {

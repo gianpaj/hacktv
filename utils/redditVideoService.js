@@ -93,7 +93,7 @@ module.exports = function RedditVideoService() {
         );
       }
       let query = reddit.hot(channel).limit(100);
-      if (after !== null) query = query.after(after);
+      if (after) query = query.after(after);
 
       query.fetch(
         res => {
