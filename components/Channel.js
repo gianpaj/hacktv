@@ -44,7 +44,7 @@ export default class Channel extends Component {
   async componentDidMount() {
     const { item } = this.props;
 
-    const videos = await redditVideoService().loadHot(
+    let videos = await redditVideoService().loadHot(
       item.subreddit,
       item.minNumOfVotes
     );
@@ -56,8 +56,10 @@ export default class Channel extends Component {
     // if (item.title == "general") {
     //   console.log(videos.map(v => ({ title: v.title, videoUrl: v.videoUrl })));
     // }
-    // if (watchedArr && watchedArr.length)
-    //   videos = videos.filter(v => watchedArr.indexOf(v.videoUrl) < 0);
+
+    const watchedArr = JSON.parse(await AsyncStorage.getItem("watched"));
+    if (watchedArr && watchedArr.length)
+      videos = videos.filter(v => watchedArr.indexOf(v.videoUrl) < 0);
 
     if (__DEV__) console.log({ title: item.title, videos });
 
@@ -69,6 +71,7 @@ export default class Channel extends Component {
   }
 
   onNext = () => this._carousel.snapToNext();
+
   componentWillUnmount() {
     clearTimeout(this.timer);
   }
