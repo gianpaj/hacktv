@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import {
   Animated,
   Dimensions,
@@ -14,7 +14,7 @@ import styles, { fadeDuration, fadeDelay } from "../styles/SliderEntry.style";
 
 const { height } = Dimensions.get("window");
 
-export default class SliderEntry extends Component {
+export default class SliderEntry extends PureComponent {
   videoRef;
 
   state = {

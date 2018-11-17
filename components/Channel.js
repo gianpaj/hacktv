@@ -28,12 +28,13 @@ const MARK_AS_WATCHED_AFTER = 1 * 1000;
 export default class Channel extends Component {
   _carousel;
   timer;
-  children = {};
+  children = [];
   state = {
-    currentVideo: null,
+    currentVideo: 0,
     fadeAnim: new Animated.Value(1), // Initial value for opacity: 1
     isLoading: true,
-    videos: []
+    videos: [],
+    removeCurrentVideo: false
   };
 
   static propTypes = {
@@ -65,12 +66,24 @@ export default class Channel extends Component {
 
     this.setState({
       videos,
-      isLoading: false,
-      currentVideo: 0
+      isLoading: false
     });
   }
 
-  onNext = () => this._carousel.snapToNext();
+  markToRemoveAfter(millis) {
+    clearTimeout(this.timer);
+    this.timer = setTimeout(() => {
+      // console.log("markToRemoveAfter");
+      this.setState({ removeCurrentVideo: true });
+      // this.markAsWatched();
+    }, millis);
+  }
+
+  // when video ended
+  onNext = () => {
+    this.removeVideo(this.state.currentVideo);
+    this._carousel.snapToNext();
+  };
 
   componentWillUnmount() {
     clearTimeout(this.timer);
@@ -107,7 +120,8 @@ export default class Channel extends Component {
     });
   };
 
-  onPlay = () => {
+  onPlay = async () => {
+    this.setState({ removeCurrentVideo: false });
     this.setState({ fadeAnim: new Animated.Value(1) }, () =>
       Animated.timing(this.state.fadeAnim, {
         delay: fadeDelay,
@@ -115,11 +129,17 @@ export default class Channel extends Component {
         duration: fadeDuration
       }).start()
     );
-    this.timer = setTimeout(() => {
-      this.markAsWatched();
-      // console.warn("watched", title);
-      // console.warn("all watched", uniqueArr);
-    }, MARK_AS_WATCHED_AFTER);
+    this.markToRemoveAfter(MARK_AS_WATCHED_AFTER);
+  };
+
+  removeVideo = idx => {
+    this.children.splice(idx, 1);
+
+    this.setState(prevState => {
+      const copy = [...prevState.videos];
+      copy.splice(idx, 1);
+      return { videos: copy };
+    });
   };
 
   markAsWatched = async () => {
@@ -160,7 +180,7 @@ export default class Channel extends Component {
           containerCustomStyle={styles.slider}
           contentContainerCustomStyle={styles.sliderContentContainer}
           data={videos}
-          enableSnap
+          // enableSnap // default
           itemHeight={itemHeight}
           itemWidth={itemWidth}
           renderItem={this.renderCell}
@@ -169,7 +189,7 @@ export default class Channel extends Component {
           // useScrollView
           onSnapToItem={this.onVideoOnScreen}
           vertical
-          shouldOptimizeUpdates
+          // shouldOptimizeUpdates // default
           removeClippedSubviews
           initialNumToRender={2}
           windowSize={2}

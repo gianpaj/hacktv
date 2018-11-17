@@ -99,7 +99,6 @@ export default class example extends Component {
             // useScrollView
             shouldOptimizeUpdates
             removeClippedSubviews
-            removeclippedsubviews
             initialNumToRender={2}
             windowSize={2}
           />
