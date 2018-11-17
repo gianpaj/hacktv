@@ -36,12 +36,13 @@ export default class SliderEntry extends PureComponent {
     // AppState.addEventListener("change", this._handleAppStateChange);
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    if (nextState.fadeAnim !== this.state.fadeAnim) {
-      return { fadeAnim: nextState.fadeAnim };
-    }
-    return false;
-  }
+
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   if (nextState.fadeAnim !== this.state.fadeAnim) {
+  //     return { fadeAnim: nextState.fadeAnim };
+  //   }
+  //   return false;
+  // }
 
   componentWillUnmount() {
     // AppState.removeEventListener("change", this._handleAppStateChange);

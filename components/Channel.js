@@ -49,6 +49,46 @@ export default class Channel extends Component {
       item.subreddit,
       item.minNumOfVotes
     );
+
+    // let videos = [
+    //   {
+    //     title: "0",
+    //     id: "9wimmn",
+    //     redditLink:
+    //       "https://www.reddit.com/r/videos/comments/9wimmn/detective_pikachu/",
+    //     type: "youtube",
+    //     videoUrl: "xU3BiUMUkc4",
+    //     color: "yellow"
+    //   },
+    //   {
+    //     title: "1",
+    //     id: "9wilg6",
+    //     redditLink:
+    //       "https://www.reddit.com/r/videos/comments/9wilg6/weird_looking_cat/",
+    //     type: "youtube",
+    //     videoUrl: "GgWsADYJdpM",
+    //     color: "blue"
+    //   },
+    //   {
+    //     title: "2",
+    //     id: "9wgwmm",
+    //     redditLink:
+    //       "https://www.reddit.com/r/videos/comments/9wgwmm/every_stan_lee_cameo/",
+    //     type: "youtube",
+    //     videoUrl: "6aXfFjvUgzM",
+    //     color: "gray"
+    //   },
+
+    //   {
+    //     title: "3",
+    //     id: "9wgwmm",
+    //     redditLink:
+    //       "https://www.reddit.com/r/videos/comments/9wgwmm/every_stan_lee_cameo/",
+    //     type: "youtube",
+    //     videoUrl: "BTShgZxiNV8",
+    //     color: "orange"
+    //   }
+    // ];
     // await AsyncStorage.clear();
 
     // console.warn(item.subreddit);

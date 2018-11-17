@@ -101,6 +101,8 @@ export default class example extends Component {
             removeClippedSubviews
             initialNumToRender={2}
             windowSize={2}
+            // loop
+            // loopClonesPerSide={1}
           />
         </View>
       </SafeAreaView>
