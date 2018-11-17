@@ -203,6 +203,10 @@ export default class SliderEntry extends PureComponent {
     this.videoRef.injectJavaScript(`player.pauseVideo()`);
   };
 
+  renderSquare(data) {
+    return <View style={{ backgroundColor: data.color, flex: 1 }} />;
+  }
+
   render() {
     const { data } = this.props;
 
@@ -210,6 +214,7 @@ export default class SliderEntry extends PureComponent {
       return (
         <View style={styles.slideInnerContainer}>
           {this.renderDescription()}
+          {/* {this.renderSquare(data)} */}
           {this.renderVideo(data)}
         </View>
       );

@@ -23,7 +23,7 @@ import PropTypes from "prop-types";
 
 const redditVideoService = require("../utils/redditVideoService.js");
 
-const MARK_AS_WATCHED_AFTER = 1 * 1000;
+const MARK_AS_WATCHED_AFTER = 3 * 1000;
 
 export default class Channel extends Component {
   _carousel;
@@ -111,13 +111,33 @@ export default class Channel extends Component {
     this.children[currentVideo] && this.children[currentVideo].onPlay();
   };
 
-  onVideoOnScreen = i => {
-    this.setState(prevState => {
-      const prevVideo = prevState.currentVideo;
-      this.children[prevVideo] && this.children[prevVideo].onPause();
-      this.children[i] && this.children[i].onPlay();
-      return { prevVideo, currentVideo: i };
-    });
+  // we have already switched to the following video
+  onVideoOnScreen = async snappingToIndex => {
+    const { currentVideo, removeCurrentVideo } = this.state;
+    // console.log("snappingTo:", snappingToIndex);
+
+    this.children[currentVideo] && this.children[currentVideo].onPause();
+    if (removeCurrentVideo) {
+      this.removeVideo(currentVideo);
+      // console.log("removedIndex:", currentVideo);
+      // up
+      if (snappingToIndex - currentVideo < 0) {
+        // console.log("snapToItem down:", snappingToIndex);
+        this._carousel.snapToItem(snappingToIndex);
+        this.children[snappingToIndex] &&
+          this.children[snappingToIndex].onPlay();
+      } else {
+        // console.log("snapToItem up:", snappingToIndex - 1);
+        this._carousel.snapToItem(snappingToIndex - 1);
+        this.children[snappingToIndex - 1] &&
+          this.children[snappingToIndex - 1].onPlay();
+      }
+      // this._carousel.triggerRenderingHack();
+    } else {
+      this.children[snappingToIndex].onPlay();
+    }
+    this.markToRemoveAfter(MARK_AS_WATCHED_AFTER);
+    this.setState({ currentVideo: snappingToIndex, removeCurrentVideo: false });
   };
 
   onPlay = async () => {
