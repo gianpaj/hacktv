@@ -34,7 +34,8 @@ export default class Channel extends Component {
     fadeAnim: new Animated.Value(1), // Initial value for opacity: 1
     isLoading: true,
     videos: [],
-    removeCurrentVideo: false
+    removeCurrentVideo: false,
+    snapping: false
   };
 
   static propTypes = {
@@ -141,14 +142,19 @@ export default class Channel extends Component {
     />
   );
 
-  pauseCurrentVideo = () => {
-    const { currentVideo } = this.state;
-    this.children[currentVideo] && this.children[currentVideo].onPause();
+  pauseCurrentVideo = index => {
+    // console.log("pauseCurrentVideo", this.children[index].props.data.title);
+    clearTimeout(this.timer);
+    if (this.children[index]) this.children[index].onPause();
   };
 
-  playCurrentVideo = () => {
-    const { currentVideo } = this.state;
-    this.children[currentVideo] && this.children[currentVideo].onPlay();
+  playCurrentVideo = index => {
+    // console.log("playCurrentVideo", this.children[index].props.data.title);
+    if (this.children[index]) {
+      setTimeout(() => {
+        this.children[index].onPlay();
+      }, 100);
+    }
   };
 
   // we have already switched to the following video
@@ -156,57 +162,51 @@ export default class Channel extends Component {
     const { currentVideo, removeCurrentVideo } = this.state;
     // console.log("snappingTo:", snappingToIndex);
 
-    this.children[currentVideo] && this.children[currentVideo].onPause();
+    if (this.state.isSnapping) {
+      // console.log("isSnapping");
+      return;
+    }
+
+    this.setState({ isSnapping: true });
+
+    this.pauseCurrentVideo(currentVideo);
     if (removeCurrentVideo) {
-      this.removeVideo(currentVideo);
+      // console.log("removeCurrentVideo");
+      await this.removeVideo(currentVideo);
       // console.log("removedIndex:", currentVideo);
       // up
       if (snappingToIndex - currentVideo < 0) {
         // console.log("snapToItem down:", snappingToIndex);
         this._carousel.snapToItem(snappingToIndex);
-        this.children[snappingToIndex] &&
-          this.children[snappingToIndex].onPlay();
+        this.playCurrentVideo(snappingToIndex);
       } else {
         // console.log("snapToItem up:", snappingToIndex - 1);
         this._carousel.snapToItem(snappingToIndex - 1);
-        this.children[snappingToIndex - 1] &&
-          this.children[snappingToIndex - 1].onPlay();
+        this.playCurrentVideo(snappingToIndex - 1);
       }
       // this._carousel.triggerRenderingHack();
     } else {
-      this.children[snappingToIndex].onPlay();
+      this.playCurrentVideo(snappingToIndex);
     }
     this.markToRemoveAfter(MARK_AS_WATCHED_AFTER);
-    this.setState({ currentVideo: snappingToIndex, removeCurrentVideo: false });
-  };
-
-  onPlay = async () => {
-    this.setState({ removeCurrentVideo: false });
-    this.setState({ fadeAnim: new Animated.Value(1) }, () =>
-      Animated.timing(this.state.fadeAnim, {
-        delay: fadeDelay,
-        toValue: 0,
-        duration: fadeDuration
-      }).start()
-    );
-    this.markToRemoveAfter(MARK_AS_WATCHED_AFTER);
-  };
-
-  removeVideo = idx => {
-    this.children.splice(idx, 1);
-
-    this.setState(prevState => {
-      const copy = [...prevState.videos];
-      copy.splice(idx, 1);
-      return { videos: copy };
+    this.setState({
+      currentVideo: snappingToIndex,
+      removeCurrentVideo: false,
+      isSnapping: false
     });
   };
 
-  markAsWatched = async () => {
-    const { videoUrl } = this.state.videos[this.state.currentVideo];
-    const watchedArr = JSON.parse(await AsyncStorage.getItem("watched"));
-    const uniqueArr = Array.from(new Set([...(watchedArr || []), videoUrl]));
-    AsyncStorage.setItem("watched", JSON.stringify(uniqueArr));
+  onPlay = async () => {
+    this.setState(
+      { removeCurrentVideo: false, fadeAnim: new Animated.Value(1) },
+      () =>
+        Animated.timing(this.state.fadeAnim, {
+          delay: fadeDelay,
+          toValue: 0,
+          duration: fadeDuration
+        }).start()
+    );
+    this.markToRemoveAfter(MARK_AS_WATCHED_AFTER);
   };
 
   onPause = () => {
@@ -216,7 +216,25 @@ export default class Channel extends Component {
         duration: fadeDuration
       }).start()
     );
-    // clearTimeout(this.timer);
+  };
+
+  removeVideo = idx => {
+    return new Promise((resolve, reject) => {
+      this.children.splice(idx, 1);
+      this.setState(prevState => {
+        const copy = [...prevState.videos];
+        copy.splice(idx, 1);
+        resolve();
+        return { videos: copy };
+      });
+    });
+  };
+
+  markAsWatched = async () => {
+    const { videoUrl } = this.state.videos[this.state.currentVideo];
+    const watchedArr = JSON.parse(await AsyncStorage.getItem("watched"));
+    const uniqueArr = Array.from(new Set([...(watchedArr || []), videoUrl]));
+    AsyncStorage.setItem("watched", JSON.stringify(uniqueArr));
   };
 
   render() {
