@@ -36,7 +36,6 @@ export default class SliderEntry extends PureComponent {
     // AppState.addEventListener("change", this._handleAppStateChange);
   }
 
-
   // shouldComponentUpdate(nextProps, nextState) {
   //   if (nextState.fadeAnim !== this.state.fadeAnim) {
   //     return { fadeAnim: nextState.fadeAnim };
@@ -130,7 +129,7 @@ export default class SliderEntry extends PureComponent {
                 allow="autoplay;"
                 src="https://www.youtube.com/embed/${
                   item.videoUrl
-                }?enablejsapi=1&rel=0&autoplay=1&controls=1"
+                }?enablejsapi=1&rel=0&autoplay=1&controls=1&playsinline=1"
                 frameborder="0"></iframe>
               <script>
               // 2. This code loads the IFrame Player API code asynchronously.

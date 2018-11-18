@@ -244,6 +244,7 @@ export default class Channel extends Component {
           itemHeight={itemHeight}
           itemWidth={itemWidth}
           renderItem={this.renderCell}
+          // onScroll={e => console.log("onScroll")}
           sliderHeight={slideHeight}
           sliderWidth={sliderWidth}
           // useScrollView
