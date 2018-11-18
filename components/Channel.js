@@ -142,17 +142,21 @@ export default class Channel extends Component {
     />
   );
 
-  pauseCurrentVideo = index => {
-    // console.log("pauseCurrentVideo", this.children[index].props.data.title);
+  pauseVideo = index => {
+    const { currentVideo } = this.state;
+    const i = index || currentVideo;
+    // console.log("pauseVideo", this.children[index].props.data.title);
     clearTimeout(this.timer);
-    if (this.children[index]) this.children[index].onPause();
+    if (this.children[i]) this.children[i].onPause();
   };
 
-  playCurrentVideo = index => {
-    // console.log("playCurrentVideo", this.children[index].props.data.title);
-    if (this.children[index]) {
+  playVideo = index => {
+    const { currentVideo } = this.state;
+    const i = index || currentVideo;
+    // console.log("playVideo", this.children[i].props.data.title);
+    if (this.children[i]) {
       setTimeout(() => {
-        this.children[index].onPlay();
+        this.children[i].onPlay();
       }, 100);
     }
   };
@@ -169,7 +173,7 @@ export default class Channel extends Component {
 
     this.setState({ isSnapping: true });
 
-    this.pauseCurrentVideo(currentVideo);
+    this.pauseVideo(currentVideo);
     if (removeCurrentVideo) {
       // console.log("removeCurrentVideo");
       await this.removeVideo(currentVideo);
@@ -178,15 +182,15 @@ export default class Channel extends Component {
       if (snappingToIndex - currentVideo < 0) {
         // console.log("snapToItem down:", snappingToIndex);
         this._carousel.snapToItem(snappingToIndex);
-        this.playCurrentVideo(snappingToIndex);
+        this.playVideo(snappingToIndex);
       } else {
         // console.log("snapToItem up:", snappingToIndex - 1);
         this._carousel.snapToItem(snappingToIndex - 1);
-        this.playCurrentVideo(snappingToIndex - 1);
+        this.playVideo(snappingToIndex - 1);
       }
       // this._carousel.triggerRenderingHack();
     } else {
-      this.playCurrentVideo(snappingToIndex);
+      this.playVideo(snappingToIndex);
     }
     this.markToRemoveAfter(MARK_AS_WATCHED_AFTER);
     this.setState({

@@ -60,9 +60,9 @@ export default class example extends Component {
     const newChannel = this.state.channels[i].title;
     if (!__DEV__) firebase.analytics().setCurrentScreen(newChannel);
     // console.warn(channels[i].title);
-    this.channelRefs[this.state.currentChannel].pauseCurrentVideo();
+    this.channelRefs[this.state.currentChannel].pauseVideo();
     this.setState({ currentChannel: i });
-    this.channelRefs[i].playCurrentVideo();
+    this.channelRefs[i].playVideo();
   };
 
   render() {
