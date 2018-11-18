@@ -116,7 +116,7 @@ export default class Channel extends Component {
     this.timer = setTimeout(() => {
       // console.log("markToRemoveAfter");
       this.setState({ removeCurrentVideo: true });
-      // this.markAsWatched();
+      this.markAsWatched();
     }, millis);
   }
 
