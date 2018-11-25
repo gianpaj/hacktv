@@ -146,7 +146,7 @@ export default class Channel extends Component {
 
   playVideo = index => {
     const { currentVideo } = this.state;
-    const i = index || currentVideo;
+    const i = index !== null ? index : currentVideo;
     // console.log("playVideo", this.children[i].props.data.title);
     if (this.children[i]) {
       setTimeout(() => {
@@ -161,13 +161,14 @@ export default class Channel extends Component {
     // console.log("snappingTo:", snappingToIndex);
 
     if (this.state.isSnapping) {
-      // console.log("isSnapping");
+      // console.log("already snapping");
       return;
     }
 
     this.setState({ isSnapping: true });
 
     this.pauseVideo(currentVideo);
+    let indexToPlay;
     if (removeCurrentVideo) {
       // console.log("removeCurrentVideo");
       await this.removeVideo(currentVideo);
@@ -176,22 +177,28 @@ export default class Channel extends Component {
       if (snappingToIndex - currentVideo < 0) {
         // console.log("snapToItem down:", snappingToIndex);
         this._carousel.snapToItem(snappingToIndex);
-        this.playVideo(snappingToIndex);
+        indexToPlay = snappingToIndex;
+        // this.playVideo(snappingToIndex);
       } else {
         // console.log("snapToItem up:", snappingToIndex - 1);
         this._carousel.snapToItem(snappingToIndex - 1);
-        this.playVideo(snappingToIndex - 1);
+        indexToPlay = snappingToIndex - 1;
+        // this.playVideo(snappingToIndex - 1);
       }
       // this._carousel.triggerRenderingHack();
     } else {
-      this.playVideo(snappingToIndex);
+      indexToPlay = snappingToIndex;
+      // this.playVideo(snappingToIndex);
     }
     this.markToRemoveAfter(MARK_AS_WATCHED_AFTER);
-    this.setState({
-      currentVideo: snappingToIndex,
-      removeCurrentVideo: false,
-      isSnapping: false
-    });
+    this.playVideo(indexToPlay);
+    setTimeout(() => {
+      this.setState({
+        currentVideo: indexToPlay,
+        removeCurrentVideo: false,
+        isSnapping: false
+      });
+    }, 100);
   };
 
   onPlay = async () => {

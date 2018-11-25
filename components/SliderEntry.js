@@ -14,7 +14,7 @@ import styles, { fadeDuration, fadeDelay } from "../styles/SliderEntry.style";
 const { height } = Dimensions.get("window");
 
 export default class SliderEntry extends PureComponent {
-  videoRef;
+  webviewRef;
 
   state = {
     // appState: AppState.currentState,
@@ -46,7 +46,7 @@ export default class SliderEntry extends PureComponent {
 
   componentWillUnmount() {
     // AppState.removeEventListener("change", this._handleAppStateChange);
-    // this.videoRef && this.videoRef.pauseAsync();
+    // this.webviewRef && this.webviewRef.pauseAsync();
   }
 
   onPlay = () => {
@@ -85,9 +85,18 @@ export default class SliderEntry extends PureComponent {
     this.props.onPause();
   };
 
-  onMessage(data) {
-    data = parseInt(data);
-    if (isNaN(data)) console.log(data);
+  onMessage(msg) {
+    // error
+    const event = JSON.parse(msg);
+    if (event.data) {
+      // case 100: // The video requested was not found
+      // case 101: // The video cannot be embedded
+      // case 150: // The video cannot be embedded
+      this.props.onNext(true);
+      return this.props.markAsWatched();
+    }
+    const data = parseInt(msg);
+    if (isNaN(data)) console.log(msg);
 
     switch (data) {
       case 0:
@@ -105,6 +114,7 @@ export default class SliderEntry extends PureComponent {
         this.props.onPause();
         break;
 
+      // case -1: // unstarted
       // case 3: // buffering
       // case 5: // video cued
 
@@ -116,7 +126,7 @@ export default class SliderEntry extends PureComponent {
   renderVideo = item => {
     return (
       <WebView
-        ref={webview => (this.videoRef = webview)}
+        ref={webview => (this.webviewRef = webview)}
         style={{ flex: 1 }}
         onMessage={event => this.onMessage(event.nativeEvent.data)}
         mediaPlaybackRequiresUserAction={false}
@@ -197,10 +207,10 @@ export default class SliderEntry extends PureComponent {
   }
 
   playVideo = () =>
-    this.videoRef.injectJavaScript(`player && player.playVideo()`);
+    this.webviewRef.injectJavaScript(`player && player.playVideo()`);
 
   pauseVideo = () =>
-    this.videoRef.injectJavaScript(`player && player.pauseVideo()`);
+    this.webviewRef.injectJavaScript(`player && player.pauseVideo()`);
 
   renderSquare = data => (
     <View style={{ backgroundColor: data.color, flex: 1 }} />
