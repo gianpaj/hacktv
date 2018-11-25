@@ -9,9 +9,9 @@ Watch something interesting.
 
 ## Getting Started
 
-This was a Expo React Native app, but because of a build issue we ejected the app and made the build locally. In the future we might remove the WebView for something like `react-native-youtube`.
+This is a `react-native init` app. In the future we might remove the WebView for something like `react-native-youtube`.
 
-### Prerequisites
+### Pre-requisites
 
 - node 8+
 - [react-native](https://facebook.github.io/react-native/docs/getting-started.html) (using _Building Projects with Native Code_)
@@ -20,9 +20,9 @@ This was a Expo React Native app, but because of a build issue we ejected the ap
 
 _Only tested on macOS_
 
-### Change channels and sub-reddits
+### How to change channels and sub-reddits
 
-We're now using Google Firebase Remote config to update the list of channels and subreddits.
+We're using Google Firebase Remote Config to update the list of channels and subreddits.
 
 See `entries.js` for the structure of the JSON string.
 
@@ -56,7 +56,7 @@ react-native run-android
    ./gradlew assembleRelease
    ```
 
-## Built With
+## Built with
 
 - [react-native](https://facebook.github.io/react-native/) - A framework for building native apps using React
 - [reddit.js](https://github.com/sahilm/reddit.js) - Reddit API wrapper for the browser
@@ -72,4 +72,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-- Thanks for UCU for organizing the [hackathon](https://www.facebook.com/events/271103630179568/)
+- Thanks for UCU for organizing the [hackathon](https://www.facebook.com/events/271103630179568/), in which the app was first developed in 12 hours
