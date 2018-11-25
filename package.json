@@ -11,6 +11,7 @@
     "react-native": "0.57.3",
     "react-native-firebase": "^5.0.0",
     "react-native-snap-carousel": "^3.7.5",
+    "react-native-webview": "^2.13.0",
     "reddit.js": "^0.1.4"
   },
   "devDependencies": {

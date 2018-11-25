@@ -4,10 +4,10 @@ import {
   // AppState,
   Dimensions,
   Text,
-  WebView,
   View
 } from "react-native";
 import PropTypes from "prop-types";
+import { WebView } from "react-native-webview";
 
 import styles, { fadeDuration, fadeDelay } from "../styles/SliderEntry.style";
 
