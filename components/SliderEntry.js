@@ -175,7 +175,7 @@ export default class SliderEntry extends PureComponent {
               }
 
               function onPlayerError(error) {
-                window.postMessage(-1);
+                window.postMessage(JSON.stringify(error));
               }
             </script>
             </body></html>`

@@ -146,7 +146,12 @@ export default class Channel extends Component {
 
   playVideo = index => {
     const { currentVideo } = this.state;
-    const i = index !== null ? index : currentVideo;
+    let i = currentVideo;
+    // if it's a number or it's defined
+    if (index === 0 || index > 0) {
+      i = index;
+    }
+    // console.log("playVideo", i, index, currentVideo);
     // console.log("playVideo", this.children[i].props.data.title);
     if (this.children[i]) {
       setTimeout(() => {
@@ -167,7 +172,7 @@ export default class Channel extends Component {
 
     this.setState({ isSnapping: true });
 
-    this.pauseVideo(currentVideo);
+    this.pauseVideo(currentVideo); // do not pause video if removing? async issue?
     let indexToPlay;
     if (removeCurrentVideo) {
       // console.log("removeCurrentVideo");
