@@ -1,12 +1,5 @@
 import React, { Component } from "react";
-import {
-  AsyncStorage,
-  ActivityIndicator,
-  Animated,
-  TouchableOpacity,
-  View,
-  Text
-} from "react-native";
+import { AsyncStorage, ActivityIndicator, Animated, View } from "react-native";
 import Carousel from "react-native-snap-carousel";
 
 import SliderEntry from "./SliderEntry";
@@ -139,6 +132,7 @@ export default class Channel extends Component {
       data={item}
       isFirstVideo={index == 0}
       isFirstChannel={this.props.isFirstChannel}
+      markAsWatched={this.markAsWatched}
     />
   );
 
@@ -256,7 +250,6 @@ export default class Channel extends Component {
 
     return (
       <View>
-        {/* <Text style={styles.channelText}>{item.title}</Text> */}
         <Carousel
           ref={c => (this._carousel = c)}
           containerCustomStyle={styles.slider}

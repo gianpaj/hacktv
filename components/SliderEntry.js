@@ -1,12 +1,11 @@
 import React, { PureComponent } from "react";
 import {
   Animated,
-  Dimensions,
   // AppState,
+  Dimensions,
   Text,
-  TouchableOpacity,
-  View,
-  WebView
+  WebView,
+  View
 } from "react-native";
 import PropTypes from "prop-types";
 
@@ -19,8 +18,7 @@ export default class SliderEntry extends PureComponent {
 
   state = {
     // appState: AppState.currentState,
-    fadeAnim: new Animated.Value(1), // Initial value for opacity: 1
-    playerStatus: -2
+    fadeAnim: new Animated.Value(1) // Initial value for opacity: 1
   };
 
   static propTypes = {
@@ -32,9 +30,9 @@ export default class SliderEntry extends PureComponent {
     onPlay: PropTypes.func.isRequired
   };
 
-  componentDidMount() {
-    // AppState.addEventListener("change", this._handleAppStateChange);
-  }
+  // componentDidMount() {
+  //   AppState.addEventListener("change", this._handleAppStateChange);
+  // }
 
   // shouldComponentUpdate(nextProps, nextState) {
   //   if (nextState.fadeAnim !== this.state.fadeAnim) {
@@ -42,6 +40,9 @@ export default class SliderEntry extends PureComponent {
   //   }
   //   return false;
   // }
+
+  // _handleAppStateChange = nextAppState =>
+  //   this.setState({ appState: nextAppState });
 
   componentWillUnmount() {
     // AppState.removeEventListener("change", this._handleAppStateChange);
@@ -84,13 +85,9 @@ export default class SliderEntry extends PureComponent {
     this.props.onPause();
   };
 
-  // _handleAppStateChange = nextAppState => {
-  //   this.setState({ appState: nextAppState });
-  // };
-
   onMessage(data) {
     data = parseInt(data);
-    this.setState({ playerStatus: data });
+    if (isNaN(data)) console.log(data);
 
     switch (data) {
       case 0:
@@ -107,6 +104,9 @@ export default class SliderEntry extends PureComponent {
         this.fadeIn();
         this.props.onPause();
         break;
+
+      // case 3: // buffering
+      // case 5: // video cued
 
       default:
         break;
@@ -154,6 +154,7 @@ export default class SliderEntry extends PureComponent {
 
               // 4. The API will call this function when the video player is ready.
               function onPlayerReady(event) {
+                // this will be "compiled" to true or false (boolean)
                 if (${this.props.isFirstChannel && this.props.isFirstVideo})
                   event.target.playVideo();
               }
@@ -163,8 +164,8 @@ export default class SliderEntry extends PureComponent {
                 window.postMessage(event.data);
               }
 
-              function onPlayerError() {
-                window.postMessage(0);
+              function onPlayerError(error) {
+                window.postMessage(-1);
               }
             </script>
             </body></html>`
@@ -195,49 +196,22 @@ export default class SliderEntry extends PureComponent {
     );
   }
 
-  playVideo = () => {
-    this.videoRef.injectJavaScript(`player.playVideo()`);
-  };
+  playVideo = () =>
+    this.videoRef.injectJavaScript(`player && player.playVideo()`);
 
-  pauseVideo = () => {
-    this.videoRef.injectJavaScript(`player.pauseVideo()`);
-  };
+  pauseVideo = () =>
+    this.videoRef.injectJavaScript(`player && player.pauseVideo()`);
 
-  renderSquare(data) {
-    return <View style={{ backgroundColor: data.color, flex: 1 }} />;
-  }
+  renderSquare = data => (
+    <View style={{ backgroundColor: data.color, flex: 1 }} />
+  );
 
   render() {
-    const { data } = this.props;
-
-    if (data.type == "youtube") {
-      return (
-        <View style={styles.slideInnerContainer}>
-          {this.renderDescription()}
-          {/* {this.renderSquare(data)} */}
-          {this.renderVideo(data)}
-        </View>
-      );
-    }
-
     return (
       <View style={styles.slideInnerContainer}>
-        <TouchableOpacity
-          activeOpacity={1}
-          style={styles.slideInnerContainer}
-          onPress={async () => {
-            if (!this.videoRef) return;
-            const status = await this.videoRef.getStatusAsync();
-
-            if (status.isPlaying) {
-              return this.onPause();
-            }
-            this.onPlay();
-          }}
-        >
-          <View style={styles.videoContainer}>{this.renderVideo(data)}</View>
-          {this.renderDescription()}
-        </TouchableOpacity>
+        {this.renderDescription()}
+        {/* {this.renderSquare(data)} */}
+        {this.renderVideo(this.props.data)}
       </View>
     );
   }
