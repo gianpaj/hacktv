@@ -6,7 +6,7 @@ export const colors = {
 };
 
 export default StyleSheet.create({
-  safeArea: {
+  container: {
     flex: 1,
     backgroundColor: colors.black
   },
@@ -37,8 +37,5 @@ export default StyleSheet.create({
   slider: {
     // marginTop: 15,
     overflow: "visible" // for custom animations
-  },
-  sliderContentContainer: {
-    // paddingVertical: 10 // for custom animation
   }
 });

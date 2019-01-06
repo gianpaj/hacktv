@@ -274,7 +274,7 @@ export default class Channel extends Component {
           // onScroll={e => console.log("onScroll")}
           sliderHeight={slideHeight}
           sliderWidth={sliderWidth}
-          // useScrollView
+          useScrollView
           onSnapToItem={this.onVideoOnScreen}
           vertical
           // shouldOptimizeUpdates // default

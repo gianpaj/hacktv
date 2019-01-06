@@ -13,6 +13,8 @@ import styles, { fadeDuration, fadeDelay } from "../styles/SliderEntry.style";
 
 const { height } = Dimensions.get("window");
 
+import config from "../config";
+
 export default class SliderEntry extends PureComponent {
   webviewRef;
 

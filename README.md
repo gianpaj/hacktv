@@ -34,7 +34,15 @@ See `entries.js` for the structure of the JSON string.
 yarn
 ```
 
-2. Start the Emulator/Simulator or connect your mobile phone to the computer.
+2. Enter YouToube API key into `config.json`
+
+```bash
+cp config-example.json config.json
+```
+
+3. Start the Emulator/Simulator or connect your mobile phone to the computer.
+
+4. Develop
 
 3. Develop
 
