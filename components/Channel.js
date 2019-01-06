@@ -96,7 +96,7 @@ export default class Channel extends Component {
     if (watchedArr && watchedArr.length)
       videos = videos.filter(v => watchedArr.indexOf(v.videoUrl) < 0);
 
-    if (__DEV__) console.log({ title: item.title, videos });
+    // if (__DEV__) console.log({ title: item.title, videos });
 
     this.setState({
       videos,
@@ -265,7 +265,7 @@ export default class Channel extends Component {
         <Carousel
           ref={c => (this._carousel = c)}
           containerCustomStyle={styles.slider}
-          contentContainerCustomStyle={styles.sliderContentContainer}
+          // contentContainerCustomStyle={styles.sliderContentContainer}
           data={videos}
           // enableSnap // default
           itemHeight={itemHeight}

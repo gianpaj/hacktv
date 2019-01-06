@@ -10,9 +10,6 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: colors.black
   },
-  container: {
-    flex: 1
-  },
   channelIcon: {
     top: 30,
     position: "absolute",

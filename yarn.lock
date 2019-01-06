@@ -4810,10 +4810,10 @@ react-native-snap-carousel@^3.7.5:
     prop-types "^15.6.1"
     react-addons-shallow-compare "15.6.2"
 
-react-native-webview@^2.13.0:
-  version "2.13.0"
-  resolved "https://registry.yarnpkg.com/react-native-webview/-/react-native-webview-2.13.0.tgz#06eb1f7a21be079e4eac693a0682034540c1084d"
-  integrity sha512-gaUZWRvXL8g/kEqi/EITOYJlHh5Ah2VgZl8Ye5p7tfP/hCNUT2Hh+SXur5dpSyAvXG6V1ef9hISI3qzi6sZYuQ==
+react-native-webview@^2.14.0:
+  version "2.14.3"
+  resolved "https://registry.yarnpkg.com/react-native-webview/-/react-native-webview-2.14.3.tgz#25ed93d4b12659fb330dd21b6d8802b86628f079"
+  integrity sha512-hKG+3G1zLosbGFm/QgZsjBWDnf9tX4UGshcCzHBifXKgwhRY3sscs70lYdGMV/J7SxVRyiA4SebUiwUwbsstyw==
   dependencies:
     escape-string-regexp "^1.0.5"
     fbjs "^0.8.17"
